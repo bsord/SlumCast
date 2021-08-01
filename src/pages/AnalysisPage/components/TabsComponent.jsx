@@ -5,13 +5,9 @@ import {
   MDBTabsItem,
   MDBTabsLink,
   MDBTabsContent,
-  MDBTabsPane,
-  MDBCol,
-  MDBRow
+  MDBTabsPane
 } from 'mdb-react-ui-kit';
-import { Config } from './ConfigComponent'
-import { Connect, Disconnect } from '../../../state/gamedata/gamedataActions'
-import  {ScoreboardComponent}  from './ScoreboardComponent';
+import { Table, Config } from '../../../state/ballchasing/ballchasingActions'
 
 
 
@@ -31,12 +27,12 @@ export const Tabs = () => {
         <MDBTabs justify className='mb-3'>
           <MDBTabsItem>
             <MDBTabsLink onClick={() => handleJustifyClick('tab1')} active={justifyActive === 'tab1'}>
-              Active
+              Tables
             </MDBTabsLink>
           </MDBTabsItem>
           <MDBTabsItem>
             <MDBTabsLink onClick={() => handleJustifyClick('tab2')} active={justifyActive === 'tab2'}>
-              ScoreBug Preview
+              Charts
             </MDBTabsLink>
           </MDBTabsItem>
           <MDBTabsItem>
@@ -48,23 +44,12 @@ export const Tabs = () => {
   
         <MDBTabsContent>
           <MDBTabsPane show={justifyActive === 'tab1'}>
-            <MDBContainer fluid>
-              <MDBRow>
-              <MDBCol size='2'>
-              < Connect/>
-              < Disconnect />
-              </MDBCol>
-              <MDBCol size='6'>
-              < ScoreboardComponent />
-              </MDBCol>
-              <MDBCol size='4'>
-                Sugma
-              </MDBCol>
-              </MDBRow>
+            <MDBContainer>
+              <Table />
             </MDBContainer>
             </MDBTabsPane>
           <MDBTabsPane show={justifyActive === 'tab2'}>Tab 2 content</MDBTabsPane>
-          <MDBTabsPane show={justifyActive === 'tab3'}><Config /></MDBTabsPane>
+          <MDBTabsPane show={justifyActive === 'tab3'}><MDBContainer><Config /></MDBContainer></MDBTabsPane>
         </MDBTabsContent>
       </>
     );

@@ -1,15 +1,52 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { dfetcher } from './gamedataReducer'
+import { dfetcher } from './gamedataSlice'
+import { connect, disconnect } from '@giantmachines/redux-websocket';
 import { MDBBtn } from 'mdb-react-ui-kit';
 import _ from 'lodash'
+import store from '../store'
+
+
+
+export function Connect() {
+    //store.dispatch(connect(''));
+    /*const connect = (url = 'ws://localhost:49122') => {
+        type: 'WEBSOCKET:CONNECT',
+        payload; { url }
+    }*/
+    return (
+        <div>
+            <MDBBtn className="" onClick={() => store.dispatch(connect('ws://localhost:49122'))}>
+                Connect
+            </MDBBtn>
+        </div>
+    )
+}
+
+
+
+
+export function Disconnect() {
+    //const wsDisconnect = () => store.dispatch(disconnect()); 
+    //console.log('wsDisconnect') 
+    return (
+        <div>
+            <MDBBtn className="" onClick={() => store.dispatch(disconnect())}>
+                Disconnect
+            </MDBBtn>
+        </div>
+    )
+}
+
+
+
 
 
 export function Gamedata() {
-    const dfetch = useSelector((state) => state.gamedata.events)
+    const dfetch = useSelector((state) => state)
     const dispatch = useDispatch()
-    let text = JSON.stringify(dfetch)
-    console.log(text)
+    let gData = dfetch.wsReducer.data
+    //console.log(gData)
     return (
         <div>
             <div className="form-group">
@@ -20,7 +57,7 @@ export function Gamedata() {
             >
                 Fetcher
             </MDBBtn>
-            <span>{}</span>
+            <span>{ }</span>
         </div>
     )
 }

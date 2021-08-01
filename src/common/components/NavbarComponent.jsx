@@ -1,15 +1,5 @@
 import React, { useState } from 'react';
-import {
-  MDBNavbar,
-  MDBContainer,
-  MDBNavbarBrand,
-  MDBIcon,
-  MDBNavbarNav,
-  MDBNavbarItem,
-  MDBNavbarLink,
-  MDBNavbarToggler,
-  MDBCollapse,
-  MDBBtn
+import { MDBNavbar, MDBContainer, MDBNavbarBrand, MDBIcon, MDBNavbarNav, MDBNavbarItem, MDBNavbarLink, MDBNavbarToggler, MDBCollapse, MDBBtn
 } from 'mdb-react-ui-kit';
 
 export const Navbar = () => {
