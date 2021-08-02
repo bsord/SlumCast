@@ -66,9 +66,9 @@ export const ScoreBugComponent = () => {
 
       {/* Score Bug Component */}
       <MDBCol size="2" className="text-light" style={{ padding: `1px`, backgroundColor: `rgba(0, 0, 0, 0.58)` }}>
-        <MDBContainer>
+        <MDBContainer className="p-0">
           <MDBRow>
-            <MDBCol size="12" className="p-0">
+            <MDBCol size="12" className="">
               <MDBContainer className="m-0 p-0">
 
                 <MDBRow className="m-0">
@@ -94,7 +94,7 @@ export const ScoreBugComponent = () => {
               </MDBContainer>
             </MDBCol>
 
-            <MDBCol size="12" className="p-0">
+            <MDBCol size="12" className="">
               <MDBContainer className="m-0 p-0">
 
                 <MDBRow className="m-0">
@@ -119,7 +119,7 @@ export const ScoreBugComponent = () => {
 
               </MDBContainer>
             </MDBCol>
-            <MDBCol size="12" className="p-0 text-light">
+            <MDBCol size="12" className=" text-light">
               <div className="text-center" >
                 <span id="overtime" className={isOT ? "" : "d-none"} style={{ fontSize: `3.3em`, fontWeight: `800` }}>+</span>
                 <span id="time" style={{ fontSize: `3.3em`, fontWeight: `800` }}>{time}</span>

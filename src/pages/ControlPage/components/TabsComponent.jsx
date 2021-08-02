@@ -65,9 +65,10 @@ export const Tabs = () => {
             </MDBRow>
           </MDBContainer>
         </MDBTabsPane>
-        <MDBTabsPane show={justifyActive === 'tab2'}>
+        <MDBTabsPane  show={justifyActive === 'tab2'}>
+        <div className="p-4">
           < ScoreBugComponent />
-
+        </div>
         </MDBTabsPane>
         <MDBTabsPane show={justifyActive === 'tab3'}><Config /></MDBTabsPane>
       </MDBTabsContent>

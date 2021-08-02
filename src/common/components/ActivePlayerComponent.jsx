@@ -68,6 +68,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 export const ActivePlayerComponent = () => {
 
 
+    return (
     <MDBRow bottom className="fixed-bottom">
         <MDBCol size="4"></MDBCol>
         <MDBCol size="4"></MDBCol>
@@ -174,5 +175,5 @@ export const ActivePlayerComponent = () => {
             </MDBRow>
         </MDBCol>
     </MDBRow>
-
+    )
 }

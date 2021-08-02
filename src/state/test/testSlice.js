@@ -38,7 +38,6 @@ const wsReducer = (state = defaultState, action): State => {
         };
   
       case REDUX_WEBSOCKET_MESSAGE:
-        let gamestate = {}
         let wsData = JSON.parse(action.payload.message)
         //console.log(wsData.data)
         return {
