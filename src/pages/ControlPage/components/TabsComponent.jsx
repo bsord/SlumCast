@@ -15,6 +15,7 @@ import { ScoreboardComponent } from './ScoreboardComponent';
 import { Status } from './StatusComponent.jsx'
 import { ActivePlayerPreview } from './ActivePlayerPreviewComponent'
 import { ScoreBugComponent } from '../../../common/components/ScoreBugComponent'
+import { ActivePlayerComponent } from '../../../common/components/ActivePlayerComponent'
 
 
 
@@ -68,6 +69,7 @@ export const Tabs = () => {
         <MDBTabsPane  show={justifyActive === 'tab2'}>
         <div className="p-4">
           < ScoreBugComponent />
+          < ActivePlayerComponent />
         </div>
         </MDBTabsPane>
         <MDBTabsPane show={justifyActive === 'tab3'}><Config /></MDBTabsPane>
