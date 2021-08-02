@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardHeader, MDBTabs, MDBTabsItem, MDBTabsLink } from 'mdb-react-ui-kit';
 
-import { Gamedata } from '../../../state/gamedata/gamedataActions'
+
 
 export const Config = () => {
 

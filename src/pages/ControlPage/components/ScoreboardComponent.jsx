@@ -7,15 +7,7 @@ import store from "../../../state/store";
 import { createSelector } from 'reselect'
 
 
-const getActivePlayer = () => createSelector(
-    (state) => state.wsReducer.gamestate.game,
-    (game) => game.filter((game) => game.hasTarget)
-)
 
-export const ActivePlayerText = () => {
-    const activePlayer = useSelector(getActivePlayer)
-    return <div>{activePlayer}</div>
-}
 
 
 export const ScoreboardComponent = () => {
@@ -70,7 +62,7 @@ export const ScoreboardComponent = () => {
         ]
     }
     let teamColors = {
-    team0: { primary: '#fff', secondary: '#fff' },
+    team0: { primary: 'bg-primary', secondary: '#fff' },
     team1: { primary: '#fff', secondary: '#fff' },
     }
 
@@ -114,7 +106,7 @@ export const ScoreboardComponent = () => {
         team1: { primary: '#' + teamData[1].color_primary, secondary: '#' + teamData[1].color_secondary },
         }
 
-        console.log(teamColors)
+        //console.log(teamColors)
 
         let result = playerList.map(player => (
             {
