@@ -32,7 +32,7 @@ export const Tabs = () => {
 
   return (
     <>
-      <MDBTabs justify className='mb-3'>
+      <MDBTabs justify className='mb-3' >
         <MDBTabsItem>
           <MDBTabsLink onClick={() => handleJustifyClick('tab1')} active={justifyActive === 'tab1'}>
             Active
@@ -50,7 +50,7 @@ export const Tabs = () => {
         </MDBTabsItem>
       </MDBTabs>
 
-      <MDBTabsContent>
+      <MDBTabsContent className=''>
         <MDBTabsPane show={justifyActive === 'tab1'}>
           <MDBContainer fluid>
             <MDBRow>

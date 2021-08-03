@@ -50,19 +50,19 @@ export const ActivePlayerComponent = () => {
         playerList = gaming.players
         activePlayerData = _.get(playerList, activeTarget)
         activeColor = gaming.game.hasTarget  ? '#' + _.toString(teamData[activePlayerData.team].color_primary) : 'yellow'
-        console.log(activeColor)
+        //console.log(activeColor)
     }
 
     
     return (
-    <MDBRow bottom className="fixed-bottom">
+    <MDBRow bottom className="fixed-bottom text-light">
         <MDBCol size="4"></MDBCol>
         <MDBCol size="4"></MDBCol>
         <MDBCol size="4">
             <MDBRow
                 dark
                 bottom
-                className={typeof activePlayerData !== "undefined" && typeof activePlayerData.name !== "undefined" ? "border border-dark white-text" : "d-none"}
+                className={typeof activePlayerData !== "undefined" && typeof activePlayerData.name !== "undefined" ? "border border-dark text-light" : "d-none"}
                 style={divStyle}>
                 <MDBCol size="6" className="px-4 pt-2">
                     <MDBTypography tag="h2" variant="h2 text-center">
@@ -72,41 +72,41 @@ export const ActivePlayerComponent = () => {
                         <MDBTableBody>
                             <tr>
                                 <td>
-                                    <strong class="white-text">Score</strong>
+                                    <strong className="text-light">Score</strong>
                                 </td>
-                                <td className="text-right white-text">
+                                <td className="text-right text-light">
                                     <strong>{typeof activePlayerData !== "undefined" && typeof activePlayerData.score !== "undefined" ? activePlayerData.score : '0'}</strong>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <strong class="white-text">Goals</strong>
+                                    <strong className="text-light">Goals</strong>
                                 </td>
-                                <td className="text-right white-text">
+                                <td className="text-right text-light">
                                     <strong>{typeof activePlayerData !== "undefined" && typeof activePlayerData.goals !== "undefined" ? activePlayerData.goals : '0'}</strong>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <strong class="white-text">Shots</strong>
+                                    <strong className="text-light">Shots</strong>
                                 </td>
-                                <td className="text-right white-text">
+                                <td className="text-right text-light">
                                     <strong>{typeof activePlayerData !== "undefined" && typeof activePlayerData.shots !== "undefined" ? activePlayerData.shots : '0'}</strong>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <strong class="white-text">Assists</strong>
+                                    <strong className="text-light">Assists</strong>
                                 </td>
-                                <td className="text-right white-text">
+                                <td className="text-right text-light">
                                     <strong>{typeof activePlayerData !== "undefined" && typeof activePlayerData.assists !== "undefined" ? activePlayerData.assists : '0'}</strong>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <strong class="white-text">Saves</strong>
+                                    <strong className="text-light">Saves</strong>
                                 </td>
-                                <td className="text-right white-text">
+                                <td className="text-right text-light">
                                     <strong>{typeof activePlayerData !== "undefined" && typeof activePlayerData.saves !== "undefined" ? activePlayerData.saves : '0'}</strong>
                                 </td>
                             </tr>

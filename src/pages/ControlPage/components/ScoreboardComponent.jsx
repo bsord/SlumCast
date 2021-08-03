@@ -21,7 +21,7 @@ export const ScoreboardComponent = () => {
     const dfetch = useSelector((state) => state.wsReducer)
 
     let teamData = [{ name: 'deez' }, { name: 'nuts' }]
-    let time = 0
+    let time = '00:00'
     let sbData = {
         columns: [
             {
@@ -62,7 +62,7 @@ export const ScoreboardComponent = () => {
         ]
     }
     let teamColors = {
-    team0: { primary: 'bg-primary', secondary: '#fff' },
+    team0: { primary: '#fff', secondary: '#fff' },
     team1: { primary: '#fff', secondary: '#fff' },
     }
 
@@ -100,6 +100,8 @@ export const ScoreboardComponent = () => {
             let e = ((goals * 1) + (assists * 0.75) + (saves * 0.6) + (shots / 3))
             return rth(e)
         }
+
+        
 
         teamColors = {
         team0: { primary: '#' + teamData[0].color_primary, secondary: '#' + teamData[0].color_secondary },
@@ -174,7 +176,7 @@ export const ScoreboardComponent = () => {
     return (
 
         <MDBCol size="">
-            <MDBCard>
+            <MDBCard border='light' style={{backgroundColor: '#BDBDBD'}}>
                 <MDBCardHeader color="elegant-color lighten-1">Current Game Info</MDBCardHeader>
                 <MDBCardBody>
                     <div className="border border-dark mb-1">

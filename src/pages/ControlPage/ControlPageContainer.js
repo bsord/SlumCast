@@ -14,9 +14,11 @@ class ControlPage extends React.Component {
         store.dispatch(connect('ws://localhost:49122'))
         
         return (
-            <Router>
+            <Router >
+                <div className='' style={{backgroundColor: '#9E9E9E', height:'100vh'}}>
                 <Navbar />
                 <Tabs />
+                </div>
             </Router>
         )
     }

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 
 import chasingReducer from './ballchasing/ballchasingSlice'
-import gamedataReducer from './gamedata/gamedataSlice'
-import  wsReducer  from './test/testSlice'
+import gamedataReducer from './control/controlSlice'
+import  wsReducer  from './ws/wsSlice'
 
 
 const rootReducer = combineReducers({

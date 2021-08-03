@@ -2,7 +2,7 @@ import React from "react"
 import { BrowserRouter as Router } from "react-router-dom"
 import { MDBContainer } from "mdb-react-ui-kit"
 import { Navbar } from '../../common/components/NavbarComponent'
-import { Table } from '../../state/gamedata/gamedataActions'
+import { Table } from '../../state/control/controlActions'
 import { Tabs } from './components/TabsComponent'
 
 

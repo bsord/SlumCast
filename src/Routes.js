@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ControlPage from './pages/ControlPage/ControlPageContainer'
 import Analysis from './pages/AnalysisPage/AnalysisPageContainer';
+import OverlayPage from './pages/OverlayPage/OverlayPageContainer'
 
 class Routes extends React.Component {
     render() {
@@ -13,6 +14,7 @@ class Routes extends React.Component {
           <Route exact path='/' component={HomePage} />
           <Route exact path='/control' component={ControlPage} />
           <Route exact path='/analysis' component={Analysis} />
+          <Route exact path='/overlay' component={OverlayPage} />
           
           <Route
           render={function() {

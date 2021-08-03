@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { dfetcher } from './gamedataSlice'
+import { dfetcher } from './controlSlice'
 import { connect, disconnect } from '@giantmachines/redux-websocket';
 import { MDBBtn } from 'mdb-react-ui-kit';
 import _ from 'lodash'
@@ -15,11 +15,9 @@ export function Connect() {
         payload; { url }
     }*/
     return (
-        <div>
-            <MDBBtn className="" onClick={() => store.dispatch(connect('ws://localhost:49122'))}>
-                Connect
-            </MDBBtn>
-        </div>
+        <MDBBtn block onClick={() => store.dispatch(connect('ws://localhost:49122'))}>
+            Connect
+        </MDBBtn>
     )
 }
 
@@ -30,11 +28,9 @@ export function Disconnect() {
     //const wsDisconnect = () => store.dispatch(disconnect()); 
     //console.log('wsDisconnect') 
     return (
-        <div>
-            <MDBBtn className="" onClick={() => store.dispatch(disconnect())}>
-                Disconnect
-            </MDBBtn>
-        </div>
+        <MDBBtn block onClick={() => store.dispatch(disconnect())}>
+            Disconnect
+        </MDBBtn>
     )
 }
 

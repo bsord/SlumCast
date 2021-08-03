@@ -31,7 +31,7 @@ export const ActivePlayerPreview = () => {
   }
   
   return (
-    <MDBCard style={{backgroundColor: '#BDBDBD'}}>
+    <MDBCard border='light' style={{backgroundColor: '#BDBDBD'}}>
       <MDBCardHeader color="elegant-color lighten-1">Active Player Panel</MDBCardHeader>
       <MDBCardBody>
         <MDBCardTitle>{typeof activePlayerData !== "undefined" && typeof activePlayerData.name !== "undefined" ? activePlayerData.name : 'No Active Player :('}</MDBCardTitle>
