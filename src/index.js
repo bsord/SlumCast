@@ -7,7 +7,6 @@ import reportWebVitals from './reportWebVitals';
 import store from './state/store'
 import { Provider } from 'react-redux'
 import registerServiceWorker from './registerServiceWorker';
-import { SocketManager } from './api/SocketManager'
 
 ReactDOM.render(
   <React.StrictMode>
