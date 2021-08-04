@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { MDBRow, MDBCol, MDBTypography, MDBTable, MDBTableBody } from 'mdbreact';
-import { CircularProgressbar, buildStyles, CircularProgressbarWithChildren,
-} from "react-circular-progressbar";
+import { CircularProgressbar, buildStyles, CircularProgressbarWithChildren } from "react-circular-progressbar";
 import { useSelector } from "react-redux";
 import _ from 'lodash'
 
