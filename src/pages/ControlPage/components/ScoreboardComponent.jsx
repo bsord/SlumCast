@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { connect, disconnect } from '@giantmachines/redux-websocket';
 import store from "../../../state/store";
 import { createSelector } from 'reselect'
-
+import { SeriesScore } from '../../../common/components/SeriesScore'
 
 
 
@@ -179,6 +179,7 @@ export const ScoreboardComponent = () => {
             <MDBCard border='light' style={{backgroundColor: '#BDBDBD'}}>
                 <MDBCardHeader color="elegant-color lighten-1">Current Game Info</MDBCardHeader>
                 <MDBCardBody>
+                    <SeriesScore />
                     <div className="border border-dark mb-1">
                         <MDBContainer className="text-center m-0 p-0">
                             <MDBRow className="m-0 p-0">

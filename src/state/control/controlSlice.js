@@ -1,6 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 import _ from 'lodash';
-import { w3cwebsocket as W3CWebSocket } from "websocket";
 import { useDispatch } from 'react-redux';
 
 const dispatch = useDispatch
@@ -8,9 +7,13 @@ const dispatch = useDispatch
 
 
 const initialState = {
-    connected: false,
-    events: {
-        update_state: {}
+    series: {
+        active: false,
+        type: 5,
+        score: {
+            team0: 0,
+            team1: 0,
+        }
     }
 }
 
@@ -20,6 +23,14 @@ export const gamedataSlice = createSlice({
     name: 'gamedata',
     initialState: initialState,
     reducers: {
+        seriesUpdate: (state, action) =>{
+            
+            let series = action.payload
+            console.log(current(_.merge(state, series)))
+
+            return state
+            
+        },
         dfetcher: (state) => {
 
 
@@ -36,46 +47,11 @@ export const gamedataSlice = createSlice({
             state.value = JSON.stringify(req)*/
 
 
-        },
-        update: (state, action) => {
-            console.log(action.payload)
-            return {
-                ...state,
-                update_state: action.payload
-            }
-
-        },
-        connect: (state) => {
-            const client = new W3CWebSocket('ws://localhost:49122');
-
-            console.log('connect fired')
-
-            state = {}
-
-            function returnState(state) {return state}
-
-            client.onopen = () => {
-                console.log('WebSocket Client Connected');
-            };
-            
-            client.onmessage = (message) => {
-                let sosEvent = JSON.parse(message.data)
-                let sosData = sosEvent.data
-                //console.log(message)
-                if (sosEvent.event == "game:update_state") {
-                    console.log('update')
-                    returnState(sosData)
-                    
-                }
-            }
-
-            return state
-
-        },
+        }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { dfetcher, connect, update } = gamedataSlice.actions
+export const { dfetcher, seriesUpdate } = gamedataSlice.actions
 
 export default gamedataSlice.reducer
