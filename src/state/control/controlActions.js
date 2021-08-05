@@ -39,6 +39,12 @@ export function SeriesConfig() {
     const dispatch = useDispatch()
     const series = useSelector(state => state.gamedata.series)
 
+    const selectGameState = state => state.wsReducer['game:update_state']
+    const gaming = useSelector(state => selectGameState(state))
+
+    let team0name = _.isUndefined(gaming) ? 'Team 0': gaming.game.teams[0].name
+    let team1name = _.isUndefined(gaming) ? 'Team 1': gaming.game.teams[1].name
+
     const seriesActive = (e) => {
         dispatch(seriesUpdate({
             series: {
@@ -93,7 +99,7 @@ export function SeriesConfig() {
                         <MDBBtn btn className={series.type == 7 ? "p-1 btn-outline-dark active" : "p-1"} value="7" color='dark' id='series-type-bo7' name='options' label='7' onClick={(event) => seriesType(event.target.value)}>BO7</MDBBtn>
                     </MDBBtnGroup>
 
-                    <label for="team0">Team 0 Score</label>
+                    <label for="team0">{team0name} Score</label>
                     <MDBBtnGroup>
                         <MDBBtn btn className={series.score.team0 == 0 ? "p-1 btn-outline-dark active" : "p-1"} value="0" color='dark' id='team-0-score-0' name='options' label='0' onClick={(event) => team0Score(event.target.value)}>0</MDBBtn>
                         <MDBBtn btn className={series.score.team0 == 1 ? "p-1 btn-outline-dark active" : "p-1"} value="1" color='dark' id='team-0-score-1' name='options' label='1' onClick={(event) => team0Score(event.target.value)}>1</MDBBtn>
@@ -102,7 +108,7 @@ export function SeriesConfig() {
                         {team0button4}
                     </MDBBtnGroup>
 
-                    <label for="team1">Team 1 Score</label>
+                    <label for="team1">{team1name} Score</label>
                     <MDBBtnGroup>
                         <MDBBtn btn className={series.score.team1 == 0 ? "p-1 btn-outline-dark active" : "p-1"} value="0" color='dark' id='team-1-score-0' name='options' label='0' onClick={(event) => team1Score(event.target.value)}>0</MDBBtn>
                         <MDBBtn btn className={series.score.team1 == 1 ? "p-1 btn-outline-dark active" : "p-1"} value="1" color='dark' id='team-1-score-1' name='options' label='1' onClick={(event) => team1Score(event.target.value)}>1</MDBBtn>

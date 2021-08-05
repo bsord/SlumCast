@@ -6,6 +6,7 @@ import {
 } from 'mdbreact';
 import { useSelector } from 'react-redux'
 import Color from 'color';
+import { SeriesScore } from './SeriesScore'
 
 const teambox = {
   boxShadow: `5px 0px 3px -2px rgba(33, 33, 33, 0.55)`,
@@ -25,6 +26,8 @@ export const ScoreBugComponent = () => {
 
   const selectGameState = state => state.wsReducer['game:update_state']
   const gaming = useSelector(state => selectGameState(state))
+
+  const series = useSelector(state => state.gamedata.series)
 
 
   let teamData
@@ -131,14 +134,22 @@ export const ScoreBugComponent = () => {
 
               </MDBContainer>
             </MDBCol>
+
+            <MDBCol size="12" className={series.active ? "p-0 text-center text-light" : "d-none"} style={{ fontSize: `1.2vw`, fontWeight: `500` }}>
+              <SeriesScore />
+            </MDBCol>
+
             {/* time bug */}
             <MDBCol size="12" className=" text-light">
+            <hr className={series.active ? "p-0 m-0" : "d-none"}/>
               <div className="text-center" >
                 <span id="overtime" className={isOT ? "" : "d-none"} style={{ fontSize: `3.3vw`, fontWeight: `800` }}>+</span>
                 <span id="time" style={{ fontSize: `3.3vw`, fontWeight: `800` }}>{time}</span>
               </div>
+              
             </MDBCol>
-          
+
+            
           </MDBRow>
         </MDBContainer>
       </MDBCol>

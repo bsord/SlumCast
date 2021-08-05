@@ -27,20 +27,20 @@ export const SeriesScore = () => {
     
     const scoring = (e) => {
         
-        if( e.team0 > e.team1 ) { 
+        if( e.team0.score > e.team1.score ) { 
            return e.team0.name + ' leads ' + e.team0.score + '-' + e.team1.score
         }
-        else if( e.team0 < e.team1 ) {
+        else if( e.team0.score < e.team1.score ) {
             return e.team1.name + ' leads ' + e.team1.score + '-' + e.team0.score
         }
-        else if ( e.team0 == e.team1 ) {
-            return 'series tied' + e.team0.score + '-' + e.team1.score 
+        else if ( e.team0.score == e.team1.score ) {
+            return 'Series tied ' + e.team0.score + '-' + e.team1.score 
         }
         else {
-            return 'frick'
+            return 'No Score'
         }
     }
-    console.log(scoring(score))
+    
     if (series.active == true) {
         
         seriesText = bestOf + scoring(score)
@@ -48,8 +48,8 @@ export const SeriesScore = () => {
     } else {
         seriesText = ''
     }
-
-
+    
+    console.log(seriesText)
     return (
         <>
         {seriesText}

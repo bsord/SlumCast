@@ -26,7 +26,7 @@ export const gamedataSlice = createSlice({
         seriesUpdate: (state, action) =>{
             
             let series = action.payload
-            console.log(current(_.merge(state, series)))
+            _.merge(state, series)
 
             return state
             
