@@ -3,14 +3,12 @@ import {
   MDBRow,
   MDBContainer,
   MDBCol,
-  MDBBtn,
-  MDBBtnGroup,
-  MDBBadge,
   MDBIcon
 } from 'mdbreact';
 import { useSelector } from 'react-redux'
 import Color from 'color';
 import { SeriesScore } from './SeriesScore'
+import { Team0lights, Team1lights } from './SeriesLights'
 import _ from 'lodash'
 
 const teambox = {
@@ -89,27 +87,6 @@ export const ScoreBugComponent = () => {
   let lightsActive0 = series.lights ? 'mb-1' : 'd-none'
   let lightsActive1 = series.lights ? 'mt-1' : 'd-none'
 
-  const all = series.type == 3 || series.type == 5 || series.type == 7
-  const fiveSeven = series.type == 5 || series.type == 7
-  const seven = series.type == 7
-
-  let team0g1 = series.games.game1.team0 == 0 ? <MDBIcon far icon="circle" /> : <MDBIcon fas icon="circle" />
-  let team0g2 = series.games.game2.team0 == 0 ? <MDBIcon far icon="circle" /> : <MDBIcon fas icon="circle" />
-  let team0g3 = series.games.game3.team0 == 0 ? <MDBIcon far icon="circle" /> : <MDBIcon fas icon="circle" />
-  let team0g4 = series.games.game4.team0 == 0 ? <MDBIcon far icon="circle" className={fiveSeven ? '' : 'd-none'} /> : <MDBIcon fas icon="circle" className={fiveSeven ? '' : 'd-none'} />
-  let team0g5 = series.games.game5.team0 == 0 ? <MDBIcon far icon="circle" className={fiveSeven ? '' : 'd-none'} /> : <MDBIcon fas icon="circle" className={fiveSeven ? '' : 'd-none'} />
-  let team0g6 = series.games.game6.team0 == 0 ? <MDBIcon far icon="circle" className={seven ? '' : 'd-none'} /> : <MDBIcon fas icon="circle" className={seven ? '' : 'd-none'} />
-  let team0g7 = series.games.game7.team0 == 0 ? <MDBIcon far icon="circle" className={seven ? '' : 'd-none'} /> : <MDBIcon fas icon="circle" className={seven ? '' : 'd-none'} />
-
-  let team1g1 = series.games.game1.team1 == 0 ? <MDBIcon far icon="circle" /> : <MDBIcon fas icon="circle" />
-  let team1g2 = series.games.game2.team1 == 0 ? <MDBIcon far icon="circle" /> : <MDBIcon fas icon="circle" />
-  let team1g3 = series.games.game3.team1 == 0 ? <MDBIcon far icon="circle" /> : <MDBIcon fas icon="circle" />
-  let team1g4 = series.games.game4.team1 == 0 ? <MDBIcon far icon="circle" className={fiveSeven ? '' : 'd-none'} /> : <MDBIcon fas icon="circle" className={fiveSeven ? '' : 'd-none'} />
-  let team1g5 = series.games.game5.team1 == 0 ? <MDBIcon far icon="circle" className={fiveSeven ? '' : 'd-none'} /> : <MDBIcon fas icon="circle" className={fiveSeven ? '' : 'd-none'} />
-  let team1g6 = series.games.game6.team1 == 0 ? <MDBIcon far icon="circle" className={seven ? '' : 'd-none'} /> : <MDBIcon fas icon="circle" className={seven ? '' : 'd-none'} />
-  let team1g7 = series.games.game7.team1 == 0 ? <MDBIcon far icon="circle" className={seven ? '' : 'd-none'} /> : <MDBIcon fas icon="circle" className={seven ? '' : 'd-none'} />
-
-
 
   return (
     <MDBRow top>
@@ -118,6 +95,9 @@ export const ScoreBugComponent = () => {
       <MDBCol size="2" className="text-light" style={{ padding: `1px`, backgroundColor: `rgba(0, 0, 0, 0.58)` }}>
         <MDBContainer className="p-0">
           <MDBRow>
+            <MDBCol size="12" className={series.text && series.active ? "p-0 text-center text-light" : "d-none"} style={{ fontSize: `1.2vw`, fontWeight: `500` }}>
+              <SeriesScore />
+            </MDBCol>
             {/* team 0 bug */}
             <MDBCol size="12" className="" >
               <MDBContainer className="m-0 p-0" style={{ background: team0grad }}>
@@ -147,17 +127,11 @@ export const ScoreBugComponent = () => {
                       </strong>
                     </span>
                   </MDBCol>
-                  <MDBCol size='12' className={lightsActive0}>
-                    <div className="d-flex justify-content-evenly">
-                      {team0g1}
-                      {team0g2}
-                      {team0g3}
-                      {team0g4}
-                      {team0g5}
-                      {team0g6}
-                      {team0g7}
-                    </div>
-                  </MDBCol>
+
+                  <div className="mb-1">
+                    <Team0lights />
+                  </div>
+
                 </MDBRow>
 
               </MDBContainer>
@@ -168,17 +142,9 @@ export const ScoreBugComponent = () => {
 
                 <MDBRow className="m-0">
 
-                  <MDBCol size='12' className={lightsActive1}>
-                  <div className="d-flex justify-content-evenly">
-                      {team1g1}
-                      {team1g2}
-                      {team1g3}
-                      {team1g4}
-                      {team1g5}
-                      {team1g6}
-                      {team1g7}
-                    </div>
-                  </MDBCol>
+                <div className="mt-1">
+                  <Team1lights />
+                </div>
 
                   <MDBCol size="3" className="d-none p-0">
                     {/* <img src="https://rustdeez.com/img/logos/cropped/ATL.png" alt="" className=" img-fluid" style={{ width: `100%`, opacity: `88%` }} /> */}
@@ -202,15 +168,13 @@ export const ScoreBugComponent = () => {
               </MDBContainer>
             </MDBCol>
 
-            <MDBCol size="12" className={series.text && series.active ? "p-0 text-center text-light" : "d-none"} style={{ fontSize: `1.2vw`, fontWeight: `500` }}>
-              <SeriesScore />
-            </MDBCol>
+
 
             {/* time bug */}
             <MDBCol size="12" className=" text-light">
-              <hr className={series.text && series.active ? "p-0 m-0" : "d-none"} />
+              
               <div className="text-center" >
-                <span id="overtime" className={isOT ? "" : "d-none"} style={{ fontSize: `3.3vw`, fontWeight: `800` }}>+</span>
+                <span id="overtime" className={isOT ? "" : "d-none"} style={{ fontSize: `3.3vw`, fontWeight: `800` }}>+ </span>
                 <span id="time" style={{ fontSize: `3.3vw`, fontWeight: `800` }}>{time}</span>
               </div>
 

@@ -6,6 +6,7 @@ import { connect, disconnect } from '@giantmachines/redux-websocket';
 import store from "../../../state/store";
 import { createSelector } from 'reselect'
 import { SeriesScore } from '../../../common/components/SeriesScore'
+import { Team0lights, Team1lights } from '../../../common/components/SeriesLights'
 
 
 
@@ -179,8 +180,22 @@ export const ScoreboardComponent = () => {
                 <MDBCardHeader color="elegant-color lighten-1">Current Game Info</MDBCardHeader>
                 <MDBCardBody>
 
-                    <MDBCol size="12" className={series.text && series.active ? "" : "d-none"} >
-                        <SeriesScore />
+                    <MDBCol size="12" className={series.active ? "mb-1" : "d-none"} >
+                        <SeriesScore /> {series.text ? "(showing)" : "(not showing)"}
+                        <hr className="p-0 m-1"/>
+
+
+                        <MDBRow>
+                            <MDBCol size="5">
+                                <Team0lights />
+                            </MDBCol>
+                            <MDBCol size="2"></MDBCol>
+                            <MDBCol size="5">
+                                <Team1lights />
+                            </MDBCol>
+                        </MDBRow>
+
+
                     </MDBCol>
 
                     <div className="border border-dark mb-1">

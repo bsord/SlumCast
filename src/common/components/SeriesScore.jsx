@@ -2,10 +2,9 @@ import { useSelector } from "react-redux";
 
 
 
+
 export const SeriesScore = () => {
-
     const series = useSelector(state => state.gamedata.series)
-
     const selectGameState = state => state.wsReducer['game:update_state']
     const gaming = useSelector(state => selectGameState(state))
 
@@ -13,7 +12,8 @@ export const SeriesScore = () => {
     let team1name = _.isUndefined(gaming) ? 'Team 1': gaming.game.teams[1].name
 
     let seriesText = ''
-    let bestOf = 'BO' + series.type + ': '
+    let bestOf = series.bestof ? "Best of " : ""
+    let gamesNumber = series.type
     let score = {
         team0: {
             name: team0name,
@@ -43,13 +43,13 @@ export const SeriesScore = () => {
     
     if (series.active == true) {
         
-        seriesText = bestOf + scoring(score)
+        seriesText = bestOf + gamesNumber + ' Games'
         
     } else {
         seriesText = ''
     }
     
-    console.log(seriesText)
+    //console.log(seriesText)
     return (
         <>
         {seriesText}
