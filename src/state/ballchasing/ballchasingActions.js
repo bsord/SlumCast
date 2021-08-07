@@ -100,6 +100,11 @@ export function Table() {
                 width: 100,
             },
             {
+                label: 'Games Played',
+                field: 'gp',
+                width: 100,
+            },
+            {
                 label: 'Score per game',
                 field: 'score',
                 width: 100,
@@ -143,6 +148,11 @@ export function Table() {
             {
                 label: 'MVPR',
                 field: 'mvpr',
+                width: 100,
+            },
+            {
+                label: 'Games Played',
+                field: 'gp',
                 width: 100,
             },
             {

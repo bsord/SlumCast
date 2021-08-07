@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MDBBadge, MDBRow, MDBCard, MDBCardBody, MDBCardHeader, MDBSwitch, MDBBtnGroup, MDBBtn } from 'mdb-react-ui-kit';
-import { Connect, Disconnect, SeriesConfig } from '../../../state/control/controlActions'
+import { Connect, Disconnect, SeriesConfig, ResestSeries } from '../../../state/control/controlActions'
 import { useSelector } from 'react-redux'
 
 export const Status = () => {
@@ -31,6 +31,7 @@ export const Status = () => {
                     <hr />
                     <MDBRow>
                         < SeriesConfig />
+                        < ResestSeries />
                     </MDBRow>
 
                 </MDBCardBody>

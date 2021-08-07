@@ -160,6 +160,7 @@ export const chasingSlice = createSlice({
         pMap = req.players.map(player => ({
           name: player.name,
           mvpr: mvpr(player.game_average.core.goals, player.game_average.core.assists, player.game_average.core.saves, player.game_average.core.shots),
+          gp: player.cumulative.games,
           score: rth(player.game_average.core.score),
           goals: rth(player.game_average.core.goals),
           assists: rth(player.game_average.core.assists),

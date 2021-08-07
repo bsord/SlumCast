@@ -12,13 +12,12 @@ import { SeriesScore } from '../../../common/components/SeriesScore'
 
 export const ScoreboardComponent = () => {
 
-
+    const series = useSelector(state => state.gamedata.series)
     const selectGameState = state => state.wsReducer['game:update_state']
 
     const gaming = useSelector(state => selectGameState(state))
     //console.log(gaming)
 
-    const dfetch = useSelector((state) => state.wsReducer)
 
     let teamData = [{ name: 'deez' }, { name: 'nuts' }]
     let time = '00:00'
@@ -62,8 +61,8 @@ export const ScoreboardComponent = () => {
         ]
     }
     let teamColors = {
-    team0: { primary: '#fff', secondary: '#fff' },
-    team1: { primary: '#fff', secondary: '#fff' },
+        team0: { primary: '#fff', secondary: '#fff' },
+        team1: { primary: '#fff', secondary: '#fff' },
     }
 
     //console.log(teamColors)
@@ -101,11 +100,11 @@ export const ScoreboardComponent = () => {
             return rth(e)
         }
 
-        
+
 
         teamColors = {
-        team0: { primary: '#' + teamData[0].color_primary, secondary: '#' + teamData[0].color_secondary },
-        team1: { primary: '#' + teamData[1].color_primary, secondary: '#' + teamData[1].color_secondary },
+            team0: { primary: '#' + teamData[0].color_primary, secondary: '#' + teamData[0].color_secondary },
+            team1: { primary: '#' + teamData[1].color_primary, secondary: '#' + teamData[1].color_secondary },
         }
 
         //console.log(teamColors)
@@ -176,24 +175,28 @@ export const ScoreboardComponent = () => {
     return (
 
         <MDBCol size="">
-            <MDBCard border='light' style={{backgroundColor: '#BDBDBD'}}>
+            <MDBCard border='light' style={{ backgroundColor: '#BDBDBD' }}>
                 <MDBCardHeader color="elegant-color lighten-1">Current Game Info</MDBCardHeader>
                 <MDBCardBody>
-                    <SeriesScore />
+
+                    <MDBCol size="12" className={series.text && series.active ? "" : "d-none"} >
+                        <SeriesScore />
+                    </MDBCol>
+
                     <div className="border border-dark mb-1">
                         <MDBContainer className="text-center m-0 p-0">
                             <MDBRow className="m-0 p-0">
                                 <MDBCol size="5" className="m-0 p-0">
                                     <MDBRow className="m-0 p-0">
-                                        <MDBCol size="9" className="m-0 p-0 " style={{backgroundColor: teamColors.team0.primary }}>{typeof teamData[0] && teamData[0].name ? teamData[0].name : '0'}  </MDBCol>
-                                        <MDBCol size="3" className="m-0 p-0 bg-primary-dark" style={{backgroundColor: teamColors.team0.secondary }} >{typeof teamData[0] && teamData[0].score ? teamData[0].score : '0'}</MDBCol>
+                                        <MDBCol size="9" className="m-0 p-0 " style={{ backgroundColor: teamColors.team0.primary }}>{typeof teamData[0] && teamData[0].name ? teamData[0].name : '0'}  </MDBCol>
+                                        <MDBCol size="3" className="m-0 p-0 bg-primary-dark" style={{ backgroundColor: teamColors.team0.secondary }} >{typeof teamData[0] && teamData[0].score ? teamData[0].score : '0'}</MDBCol>
                                     </MDBRow>
                                 </MDBCol>
                                 <MDBCol size="2">{typeof time ? time : 'no'}</MDBCol>
                                 <MDBCol size="5" className="m-0 p-0">
                                     <MDBRow className="m-0 p-0">
-                                        <MDBCol size="3" className="m-0 p-0 warning-color-dark" style={{backgroundColor: teamColors.team1.secondary }}>{typeof teamData[1] && teamData[1].score ? teamData[1].score : '0'}</MDBCol>
-                                        <MDBCol size="9" className="m-0 p-0 warning-color" style={{backgroundColor: teamColors.team1.primary }}>{typeof teamData[1] && teamData[1].name ? teamData[1].name : '0'}</MDBCol>
+                                        <MDBCol size="3" className="m-0 p-0 warning-color-dark" style={{ backgroundColor: teamColors.team1.secondary }}>{typeof teamData[1] && teamData[1].score ? teamData[1].score : '0'}</MDBCol>
+                                        <MDBCol size="9" className="m-0 p-0 warning-color" style={{ backgroundColor: teamColors.team1.primary }}>{typeof teamData[1] && teamData[1].name ? teamData[1].name : '0'}</MDBCol>
                                     </MDBRow>
                                 </MDBCol>
                             </MDBRow>

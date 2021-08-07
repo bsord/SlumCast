@@ -9,14 +9,81 @@ const dispatch = useDispatch
 const initialState = {
     series: {
         active: false,
+        text: false,
+        lights: false,
+        bestof: true,
         type: 5,
         score: {
             team0: 0,
             team1: 0,
+        },
+        games: {
+            game1:{
+                team0: 0,
+                team1: 0
+            },
+            game2:{
+                team0: 0,
+                team1: 0
+            },
+            game3:{
+                team0: 0,
+                team1: 0
+            },
+            game4:{
+                team0: 0,
+                team1: 0
+            },
+            game5:{
+                team0: 0,
+                team1: 0
+            },
+            game6:{
+                team0: 0,
+                team1: 0
+            },
+            game7:{
+                team0: 0,
+                team1: 0
+            },
         }
     }
 }
 
+const fresh = {
+    series: {
+        games: {
+            game1:{
+                team0: 0,
+                team1: 0
+            },
+            game2:{
+                team0: 0,
+                team1: 0
+            },
+            game3:{
+                team0: 0,
+                team1: 0
+            },
+            game4:{
+                team0: 0,
+                team1: 0
+            },
+            game5:{
+                team0: 0,
+                team1: 0
+            },
+            game6:{
+                team0: 0,
+                team1: 0
+            },
+            game7:{
+                team0: 0,
+                team1: 0
+            },
+        }
+    }
+}
 
 
 export const gamedataSlice = createSlice({
@@ -31,27 +98,17 @@ export const gamedataSlice = createSlice({
             return state
             
         },
-        dfetcher: (state) => {
+        resetSeries: (state) => {
+            console.log('fire')
 
+            _.merge(state, fresh)
 
-
-            let sosData = initialState.events.update_state
-            state.events.update_state = sosData
-
-            console.log(state.events)
-
-            //state.events.update_state = newData
-
-            /*let deez = _.toString(req)
-            console.log(req)
-            state.value = JSON.stringify(req)*/
-
-
-        }
-    },
+            return state
+        },
+    }
 })
 
 // Action creators are generated for each case reducer function
-export const { dfetcher, seriesUpdate } = gamedataSlice.actions
+export const {  seriesUpdate, resetSeries } = gamedataSlice.actions
 
 export default gamedataSlice.reducer
