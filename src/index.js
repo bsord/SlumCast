@@ -8,10 +8,18 @@ import store from './state/store'
 import { Provider } from 'react-redux'
 import registerServiceWorker from './registerServiceWorker';
 import { PersistGate } from 'redux-persist/integration/react'
-
+import crossBrowserListener from './utils/reduxpersist-listener'
 import { persistStore } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+import { hardSet } from 'redux-persist/lib/stateReconciler/hardSet'
 let persistor = persistStore(store)
+const persistConfig = {
+   key: 'root',
+   storage,
+   stateReconciler: hardSet
+}
 
+window.addEventListener('storage', crossBrowserListener(store, persistConfig))
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
