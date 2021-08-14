@@ -9,9 +9,9 @@ import {
   MDBCol,
   MDBContainer
 } from 'mdb-react-ui-kit';
-import {RadarChart} from '../components/charts/CoreCharts'
+import { Table } from '../../../state/ballchasing/ballchasingActions'
 
-export const ChartsTabs = () => {
+export const TablesTabs = () => {
   const [verticalActive, setVerticalActive] = useState('tab1');
 
   const handleVerticalClick = (value: string) => {
@@ -51,7 +51,7 @@ export const ChartsTabs = () => {
         </MDBCol>
         <MDBCol size='10'>
           <MDBTabsContent>
-            <MDBTabsPane show={verticalActive === 'tab1'}><MDBContainer className='mx-5'><RadarChart/></MDBContainer></MDBTabsPane>
+            <MDBTabsPane show={verticalActive === 'tab1'}><MDBContainer className='mx-5'>< Table /></MDBContainer></MDBTabsPane>
             <MDBTabsPane show={verticalActive === 'tab2'}>Boost</MDBTabsPane>
             <MDBTabsPane show={verticalActive === 'tab3'}>Positioning</MDBTabsPane>
             <MDBTabsPane show={verticalActive === 'tab4'}>Movement</MDBTabsPane>
