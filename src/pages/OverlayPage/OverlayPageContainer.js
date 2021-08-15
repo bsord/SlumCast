@@ -4,7 +4,7 @@ import { connect } from "@giantmachines/redux-websocket"
 import store from "../../state/store"
 import { ScoreBugComponent } from '../../common/components/ScoreBugComponent'
 import { ActivePlayerComponent } from '../../common/components/ActivePlayerComponent'
-
+import { OverlayContainer } from '../../common/containers/OverlayContainer'
 
 
 class OverlayPage extends React.Component {
@@ -14,10 +14,7 @@ class OverlayPage extends React.Component {
 
         return (
             <Router >
-                <div className="p-4">
-                    < ScoreBugComponent />
-                    < ActivePlayerComponent />
-                </div>
+                < OverlayContainer />
             </Router>
         )
     }

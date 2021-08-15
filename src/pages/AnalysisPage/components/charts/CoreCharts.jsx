@@ -1,34 +1,81 @@
 import React, { useState } from 'react';
 import { Radar } from 'react-chartjs-2';
+import {
+    MDBTabs,
+    MDBTabsItem,
+    MDBTabsLink,
+    MDBTabsContent,
+    MDBTabsPane,
+    MDBRow,
+    MDBCol,
+    MDBContainer
+  } from 'mdb-react-ui-kit';
+import { useSelector } from "react-redux";
+import _ from 'lodash'
 
 
 
 
+export const CoreCharts = () => {
 
-  
-  export const RadarChart = () => {
-    const data = {
-        labels: ['Thing 1', 'Thing 2', 'Thing 3', 'Thing 4', 'Thing 5', 'Thing 6'],
-        datasets: [
-          {
-            label: '# of Votes',
-            data: [2, 9, 3, 5, 2, 3],
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgba(255, 99, 132, 1)',
-            borderWidth: 1,
-          },
+    const chasing = useSelector(state => state.chasing)
+    let huh = _.isUndefined(chasing)
+    const rth = (e) => {
+        return _.round(e, 3)
+    }
+    const mvpr = (goals, assists, saves, shots) => {
+        let e = ((goals * 1) + (assists * 0.75) + (saves * 0.6) + (shots / 3))
+        return rth(e)
+    }
+
+    const empty = {
+        label: 'no data',
+        data: {
+            goals: 0,
+            assists: 0,
+            saves: 0
+        }
+    }
+
+    function random_rgba() {
+        var o = Math.round, r = Math.random, s = 255;
+        return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + 0.5 + ')';
+    }
+
+    let pMap = huh ? empty : chasing.players.map(player => ({
+        label: player.name,
+        data: [
+            rth(player.game_average.core.goals),
+            rth(player.game_average.core.assists),
+            rth(player.game_average.core.saves),
         ],
-      };
-      
-      const options = {
-        scale: {
-          ticks: { beginAtZero: true },
-        },
-      };
+        backgroundColor: random_rgba(),
+        borderColor: random_rgba(),
+        borderWidth: 1
+    }))
 
-return (
-    <>
-      <Radar data={data} options={options} />
-    </>
-  
-)}
+    console.log(pMap)
+
+    const GasData = {
+        labels: ['goals', 'assists', 'saves'],
+        datasets: pMap,
+    };
+
+    const options = {
+        scale: {
+            ticks: { beginAtZero: true },
+        }
+    };
+
+    return (
+        <>
+        <MDBRow>
+            <MDBCol md='6' className='text-center'>
+                <h2>Goals, Assists, Saves</h2>
+                <Radar redraw={true} data={GasData} options={options} />
+            </MDBCol>
+        </MDBRow>
+        </>
+
+    )
+}

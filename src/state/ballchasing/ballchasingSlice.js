@@ -92,7 +92,6 @@ const apiGrab = (groupid, key) => {
 
       let result = {
         value: req,
-        players: req.players,
         playerRows: pMap
       }
       console.log(result)

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import _ from 'lodash'
 
 import RadialSeparators from "./RadialSeparators";
+
 const percentage = 100;
 const divStyle = {
     transform: `

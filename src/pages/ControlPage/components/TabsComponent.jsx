@@ -14,9 +14,7 @@ import { Config } from './ConfigComponent'
 import { ScoreboardComponent } from './ScoreboardComponent';
 import { Status } from './StatusComponent.jsx'
 import { ActivePlayerPreview } from './ActivePlayerPreviewComponent'
-import { ScoreBugComponent } from '../../../common/components/ScoreBugComponent'
-import { ActivePlayerComponent } from '../../../common/components/ActivePlayerComponent'
-
+import { OverlayContainer } from '../../../common/containers/OverlayContainer'
 
 
 export const Tabs = () => {
@@ -67,10 +65,7 @@ export const Tabs = () => {
           </MDBContainer>
         </MDBTabsPane>
         <MDBTabsPane  show={justifyActive === 'tab2'}>
-        <div className="p-4">
-          < ScoreBugComponent />
-          < ActivePlayerComponent />
-        </div>
+          < OverlayContainer/>
         </MDBTabsPane>
         <MDBTabsPane show={justifyActive === 'tab3'}><Config /></MDBTabsPane>
       </MDBTabsContent>
