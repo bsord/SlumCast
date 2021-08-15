@@ -43,14 +43,16 @@ export const ActivePlayerComponent = () => {
     let playerList
     let activePlayerData
     let activeColor = 'yellow'
+    let isReplay = false
 
     if (gaming != undefined) {
         let teamData = gaming.game.teams
         activeTarget = gaming.game.target
         playerList = gaming.players
+        isReplay = gaming.game.isReplay
         activePlayerData = _.get(playerList, activeTarget)
         activeColor = gaming.game.hasTarget  ? '#' + _.toString(teamData[activePlayerData.team].color_primary) : 'yellow'
-        //console.log(activeColor)
+        //console.log(isReplay)
     }
 
     
@@ -62,7 +64,7 @@ export const ActivePlayerComponent = () => {
             <MDBRow
                 dark
                 bottom
-                className={typeof activePlayerData !== "undefined" && typeof activePlayerData.name !== "undefined" ? "border border-dark text-light" : "d-none"}
+                className={typeof activePlayerData !== "undefined" && typeof activePlayerData.name !== "undefined" && isReplay == false ? "border border-dark text-light" : "d-none"}
                 style={divStyle}>
                 <MDBCol size="6" className="px-4 pt-2">
                     <MDBTypography tag="h2" variant="h2 text-center">

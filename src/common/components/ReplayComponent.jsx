@@ -1,23 +1,47 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { MDBIcon } from 'mdbreact';
+import { MDBIcon, MDBTypography  } from 'mdbreact';
 import _ from 'lodash'
 
 export const ReplayComponent = () => {
 
 
     const selectGameState = state => state.wsReducer['game:update_state']
+    const selectGoalState = state => state.wsReducer['game:goal_scored']
     const gaming = useSelector(state => selectGameState(state))
+    const goal = useSelector(state => selectGoalState(state))
 
-    let ot = _.isUndefined(gaming) ? undefined : gaming.isOT
+    let gCheck = gaming == undefined ? false : gaming.game.isReplay
 
-    console.log(ot)
-    const style = { height: `150px`, background: `radial-gradient(circle, rgba(0,146,163,0.33) 0%, rgba(4,4,57,0.33) 100%)` }
+    let replayDisplay = gCheck == true ? 'w-100 fixed-bottom text-light p-3 d-flex align-items-center' : 'd-none'
+
+    let goalspeed = _.isUndefined(goal) ? '0' : _.round(goal.goalspeed * 0.62)
+
+    let assister = _.isUndefined(goal) ? '' : goal.assister.name
+
+    let assistDisplay = assister == ''  ? 'd-none' : 'mx-4'
+
+    console.log(assister)
+    const style = { height: `150px`, backgroundColor: `rgba(0, 0, 0, 0.58)` }
+    let scorer =  _.isUndefined(goal) ? '' : goal.scorer.name
 
     return (
         <>
-        <div className='w-100 fixed-bottom text-light' style={style}>
-            <MDBIcon fas icon="futbol" /> Nuts <MDBIcon fas icon="hands-helping" /> Deez
+        <div className={replayDisplay} style={style}>
+        <MDBTypography tag='div' className='display-1 text-danger flex-grow-1'>
+        <MDBIcon fas icon="circle" /> Replay
+        </MDBTypography>
+        <div style={{fontSize: `2.5vw`}}>
+        <span className="mx-4">
+            <MDBIcon fas icon="futbol" /> {scorer}
+        </span>
+        <span className={assistDisplay}>
+            <MDBIcon fas icon="hands-helping" /> {assister}
+        </span> 
+        <span className="mx-4">
+            <MDBIcon fas icon="wind" /> {goalspeed} MPH
+        </span>
+        </div>
         </div>
         </>
     )
