@@ -21,7 +21,7 @@ export const ReplayComponent = () => {
 
     let assistDisplay = assister == ''  ? 'd-none' : 'mx-4'
 
-    console.log(assister)
+    //console.log(assister)
     const style = { height: `150px`, backgroundColor: `rgba(0, 0, 0, 0.58)` }
     let scorer =  _.isUndefined(goal) ? '' : goal.scorer.name
 
