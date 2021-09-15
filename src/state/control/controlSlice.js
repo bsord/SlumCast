@@ -99,7 +99,7 @@ export const gamedataSlice = createSlice({
             
         },
         resetSeries: (state) => {
-            console.log('fire')
+            //console.log('fire')
 
             _.merge(state, initialState)
 
