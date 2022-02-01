@@ -41,11 +41,11 @@ export const Tabs = () => {
             ScoreBug Preview
           </MDBTabsLink>
         </MDBTabsItem>
-        <MDBTabsItem>
+        {/*<MDBTabsItem>
           <MDBTabsLink onClick={() => handleJustifyClick('tab3')} active={justifyActive === 'tab3'}>
             Config
           </MDBTabsLink>
-        </MDBTabsItem>
+        </MDBTabsItem>*/}
       </MDBTabs>
 
       <MDBTabsContent className=''>
@@ -67,7 +67,7 @@ export const Tabs = () => {
         <MDBTabsPane  show={justifyActive === 'tab2'}>
           < OverlayContainer/>
         </MDBTabsPane>
-        <MDBTabsPane show={justifyActive === 'tab3'}><Config /></MDBTabsPane>
+        {/*<MDBTabsPane show={justifyActive === 'tab3'}><Config /></MDBTabsPane>*/}
       </MDBTabsContent>
     </>
   );

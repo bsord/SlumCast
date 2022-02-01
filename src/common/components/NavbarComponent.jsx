@@ -29,14 +29,13 @@ export const Navbar = () => {
             <MDBNavbarItem>
               <MDBNavbarLink href='/control'>Control</MDBNavbarLink>
             </MDBNavbarItem>
-            <MDBNavbarItem>
+            {/*<MDBNavbarItem>
               <MDBNavbarLink href='/analysis'>Analysis</MDBNavbarLink>
-            </MDBNavbarItem>
+            </MDBNavbarItem>*/}
             <MDBNavbarItem>
               <MDBNavbarLink href='/overlay'>Overlay</MDBNavbarLink>
             </MDBNavbarItem>
           </MDBNavbarNav>
-          <MDBBtn toggle size='sm' className='text-dark' color='light' rounded >Toggle button</MDBBtn>
         </MDBCollapse>
       </MDBContainer>
     </MDBNavbar>

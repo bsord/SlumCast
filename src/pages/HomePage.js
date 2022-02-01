@@ -12,7 +12,7 @@ class HomePage extends React.Component {
                     style={{ height: '100vh' }}
                 >
                     <MDBRow>
-                        <MDBCol sm='4'>
+                        <MDBCol sm='6'>
                             <MDBCard>
                                 <MDBCardBody>
                                     <MDBCardTitle>Control Panel</MDBCardTitle>
@@ -24,7 +24,7 @@ class HomePage extends React.Component {
                                 </MDBCardBody>
                             </MDBCard>
                         </MDBCol>
-                        <MDBCol sm='4'>
+                        <MDBCol sm='6'>
                             <MDBCard>
                                 <MDBCardBody>
                                     <MDBCardTitle>Overlay</MDBCardTitle>
@@ -35,7 +35,7 @@ class HomePage extends React.Component {
                                 </MDBCardBody>
                             </MDBCard>
                         </MDBCol>
-                        <MDBCol sm='4'>
+                        {/*<MDBCol sm='4'>
                             <MDBCard>
                                 <MDBCardBody>
                                     <MDBCardTitle>Analysis</MDBCardTitle>
@@ -45,7 +45,7 @@ class HomePage extends React.Component {
                                     <MDBBtn href='/analysis'>Analysis Page</MDBBtn>
                                 </MDBCardBody>
                             </MDBCard>
-                        </MDBCol>
+                        </MDBCol>*/}
                     </MDBRow>
                 </div>
             </MDBContainer>

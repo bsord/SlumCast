@@ -13,7 +13,7 @@ class Routes extends React.Component {
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/control' component={ControlPage} />
-          <Route exact path='/analysis' component={Analysis} />
+          {/*<Route exact path='/analysis' component={Analysis} />*/}
           <Route exact path='/overlay' component={OverlayPage} />
           
           <Route
