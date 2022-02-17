@@ -20,7 +20,7 @@ export const ScoreboardComponent = () => {
     //console.log(gaming)
 
 
-    let teamData = [{ name: 'deez' }, { name: 'nuts' }]
+    let teamData = [{ name: 'team 0' }, { name: 'team 1' }]
     let time = '00:00'
     let sbData = {
         columns: [

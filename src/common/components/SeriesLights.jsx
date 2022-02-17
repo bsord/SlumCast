@@ -25,6 +25,7 @@ export let Team0lights = () => {
     const light = `rgba(255,255,255,0.5)`
     const dark = `rgba(000,000,000,0.5)`
 
+    //console.log(series)
     let team0g1 = series.games.game1.team0 == 0 ? <MDBBadge style={{backgroundColor: dark}}>1</MDBBadge> : <MDBBadge className="text-dark" style={{backgroundColor: light}}>1</MDBBadge>
     let team0g2 = series.games.game2.team0 == 0 ? <MDBBadge style={{backgroundColor: dark}}>2</MDBBadge> : <MDBBadge className="text-dark" style={{backgroundColor: light}}>2</MDBBadge>
     let team0g3 = series.games.game3.team0 == 0 ? <MDBBadge style={{backgroundColor: dark}}>3</MDBBadge> : <MDBBadge className="text-dark" style={{backgroundColor: light}}>3</MDBBadge>
