@@ -7,7 +7,7 @@ export const OverlayContainer = () => {
     
     return (
     <div style={{}}>
-        <div className="p-4">
+        <div className="pt-0 p-4">
         < ScoreBugComponent />
         < ActivePlayerComponent />
         </div>
