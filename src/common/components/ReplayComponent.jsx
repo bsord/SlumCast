@@ -44,7 +44,7 @@ export const ReplayComponent = () => {
                             <MDBIcon fas icon="hands-helping" /> {assister}
                         </span>
                         <span className="mx-4">
-                            <MDBIcon fas icon="wind" /> {goalspeed} MPH
+                            <MDBIcon fas icon="wind" /> {goalspeed} KPH
                         </span>
                     </div>
                 </div>

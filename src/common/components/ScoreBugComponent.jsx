@@ -157,10 +157,11 @@ export const ScoreBugComponent = () => {
 
                 <MDBRow className="m-0">
 
-
-
                   <MDBCol size="3" className="d-none p-0">
                     {/* <img src="https://rustdeez.com/img/logos/cropped/ATL.png" alt="" className=" img-fluid" style={{ width: `100%`, opacity: `88%` }} /> */}
+                  </MDBCol>
+                  <MDBCol size="3" className="p-0 pt-1 text-center d-flex align-items-center justify-content-center" >
+                    <span style={{ fontSize: `3.2em`, fontWeight: `800` }}><strong>{teamData != undefined ? teamData[1].score : '0'}</strong></span>
                   </MDBCol>
                   <MDBCol size="9" className="p-1 text-center text-light" style={{ teambox, fontSize: `2.0vw`, fontWeight: `800`, lineHeight: `2vw` }}>
 
@@ -173,9 +174,7 @@ export const ScoreBugComponent = () => {
                     </div>
 
                   </MDBCol>
-                  <MDBCol size="3" className="p-0 pt-1 text-center d-flex align-items-center justify-content-center" >
-                    <span style={{ fontSize: `3.2em`, fontWeight: `800` }}><strong>{teamData != undefined ? teamData[1].score : '0'}</strong></span>
-                  </MDBCol>
+
 
                   <div className="mb-1">
                     <Team1lights />
