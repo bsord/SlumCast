@@ -144,7 +144,7 @@ export const ScoreBugComponent = () => {
                 <SeriesScore />
               </div>
 
-              <div className="" style={{ marginBottom: `-20px` }} >
+              <div className="" style={{ marginTop: `-10px`, marginBottom: `-20px` }} >
                 <span id="overtime" className={isOT ? "" : "d-none"} style={{ fontSize: `2.6vw`, fontWeight: `800` }}>+ </span>
                 <span id="time" style={{ fontSize: `2.6vw`, fontWeight: `800` }}>{time}</span>
               </div>
