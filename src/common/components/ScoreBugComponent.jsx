@@ -80,14 +80,14 @@ export const ScoreBugComponent = () => {
 
 
 
-    team0NameSize = teamData[0].name.length > 13? 1.6 : 2
-    team1NameSize = teamData[1].name.length > 13? 1.6 : 2
+    team0NameSize = teamData[0].name.length > 11? 1.6 : 2
+    team1NameSize = teamData[1].name.length > 11? 1.6 : 2
     console.log(teamData[1].name.length)
   }
-  let team0grad = `linear-gradient(-175deg, rgba(0,0,0,1) -25%,` +  teamColors.team0.primary + ` 100%)`
-  let team0gradinv = `linear-gradient(-25deg, rgba(255,255,255,1) -10%,` +  teamColors.team0.primary + ` 30%)`
-  let team1grad = `linear-gradient(175deg, rgba(0,0,0,1) 0%,` + teamColors.team1.primary + ` 100%)`
-  let team1gradinv = `linear-gradient(25deg, rgba(255,255,255,1) -10%,` + teamColors.team1.primary + ` 30%)`
+  let team0grad = `linear-gradient(-175deg, rgba(0,0,0,1) -25%,` +  teamColors.team0.primary + ` 125%)`
+  let team0gradinv = `linear-gradient(-25deg, rgba(255,255,255,1) -30%,` +  teamColors.team0.primary + ` 20%)`
+  let team1grad = `linear-gradient(175deg, rgba(0,0,0,1) 0%,` + teamColors.team1.primary + ` 125%)`
+  let team1gradinv = `linear-gradient(25deg, rgba(255,255,255,1) -30%,` + teamColors.team1.primary + ` 20%)`
   let timebuggrad = `linear-gradient(0deg, rgba(75,75,75,1) -50%, rgba(0,0,0,1) 120%)`
   let scoregrad = `linear-gradient(0deg, rgba(75,75,75,1) 0%, rgba(0,0,0,1) 200%)`
 
@@ -112,7 +112,7 @@ export const ScoreBugComponent = () => {
                   <MDBCol size="10" className="mt-2 pt-0 pb-0 text-center text-light clipped-left" style={{ teambox, fontSize: team0NameSize +`vw`, fontWeight: `800`, lineHeight: team0NameSize +`vw`, background: team0grad  }}>
                     <div className="h-100 d-flex align-items-center justify-content-center ">
                       <div className="">
-                        <strong>
+                        <strong style={{letterSpacing:'.05em'}}>
                           {teamData != undefined ? teamData[0].name : 'BLUE'}
                         </strong>
                       </div>
@@ -149,7 +149,7 @@ export const ScoreBugComponent = () => {
 
                     <div className="h-100 d-flex align-items-center justify-content-center">
                       <div className="">
-                        <strong>
+                        <strong style={{letterSpacing:'.05em'}}>
                           {teamData != undefined ? teamData[1].name : 'ORANGE'}
                         </strong>
                       </div>

@@ -63,7 +63,7 @@ export const ActivePlayerComponent = () => {
                         {typeof activePlayerData !== "undefined" && typeof activePlayerData.name !== "undefined" ? activePlayerData.name : 'None'}
                     </MDBTypography>
                 </MDBCol>
-                <MDBCol size="9" style={{background: statsgrad}} className='px-3' >
+                <MDBCol size="9" style={{background: statsgrad}} className='px-4' >
                     <MDBRow>
                         <MDBCol size="2">
                             <MDBRow>
@@ -81,7 +81,7 @@ export const ActivePlayerComponent = () => {
                         </MDBCol>
                         <MDBCol size="2">
                             <MDBRow>
-                                <MDBCol size='4' style={{fontSize:'2em', lineHeight: '1.25em', textAlign: 'right', paddingRight:'.1em'}}>
+                                <MDBCol  style={{fontSize:'2em', lineHeight: '1.25em', textAlign: 'right', paddingRight:'.1em'}}>
                                     <strong>
                                         {typeof activePlayerData !== "undefined" && typeof activePlayerData.shots !== "undefined" ? activePlayerData.shots : '0'}
                                     </strong>
@@ -95,7 +95,7 @@ export const ActivePlayerComponent = () => {
                         </MDBCol>
                         <MDBCol size="2">
                             <MDBRow>
-                                <MDBCol size='4' style={{fontSize:'2em', lineHeight: '1.25em', textAlign: 'right', paddingRight:'.1em'}}>
+                                <MDBCol  style={{fontSize:'2em', lineHeight: '1.25em', textAlign: 'right', paddingRight:'.1em'}}>
                                     <strong>
                                         {typeof activePlayerData !== "undefined" && typeof activePlayerData.shots !== "undefined" ? activePlayerData.shots : '0'}
                                     </strong>
@@ -109,7 +109,7 @@ export const ActivePlayerComponent = () => {
                         </MDBCol>
                         <MDBCol size="2">
                             <MDBRow>
-                                <MDBCol size='4' style={{fontSize:'2em', lineHeight: '1.25em', textAlign: 'right', paddingRight:'.1em'}}>
+                                <MDBCol  style={{fontSize:'2em', lineHeight: '1.25em', textAlign: 'right', paddingRight:'.1em'}}>
                                     <strong>
                                     {typeof activePlayerData !== "undefined" && typeof activePlayerData.assists !== "undefined" ? activePlayerData.assists : '0'}
                                     </strong>
@@ -123,7 +123,7 @@ export const ActivePlayerComponent = () => {
                         </MDBCol>
                         <MDBCol size="2">
                             <MDBRow>
-                                <MDBCol size='4' style={{fontSize:'2em', lineHeight: '1.25em', textAlign: 'right', paddingRight:'.1em'}}>
+                                <MDBCol  style={{fontSize:'2em', lineHeight: '1.25em', textAlign: 'right', paddingRight:'.1em'}}>
                                     <strong>
                                         {typeof activePlayerData !== "undefined" && typeof activePlayerData.saves !== "undefined" ? activePlayerData.saves : '0'}
                                     </strong>
