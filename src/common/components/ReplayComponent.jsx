@@ -26,17 +26,17 @@ export const ReplayComponent = () => {
     let assistDisplay = assister == '' ? 'd-none' : 'mx-4'
 
     console.log(winnerHide)
-    const style = { height: `100px`, background: `linear-gradient(0deg, rgba(75,75,75,.85) -50%, rgba(0,0,0,.85) 120%)` }
+    const style = { background: `linear-gradient(0deg, rgba(75,75,75,.85) -50%, rgba(0,0,0,.85) 120%)` }
     let scorer = _.isUndefined(goal) ? '' : goal.scorer.name
 
     return (
         <>
             <div className={winnerHide}>
                 <div className={replayDisplay} style={style}>
-                    <MDBTypography tag='div' className='display-1 text-danger flex-grow-1'>
+                    <MDBTypography tag='div' className='text-danger flex-grow-1' style={{fontSize:'1.5vw', paddingLeft: '.75vw'}}>
                         <MDBIcon fas icon="circle" /> Replay
                     </MDBTypography>
-                    <div style={{ fontSize: `2.5vw` }}>
+                    <div style={{ fontSize: `1.5vw` }}>
                         <span className="mx-4">
                             <MDBIcon fas icon="futbol" /> {scorer}
                         </span>

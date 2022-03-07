@@ -187,11 +187,11 @@ export const ActivePlayerComponent = () => {
                             />
                         </div>
                         <div
-                            style={{ fontSize: 80, fontWeight: 300, marginTop: -5 }}
+                            style={{ fontSize: 80, fontWeight: 300, marginTop: '-1vw' }}
                         >
                             <strong>{typeof activePlayerData !== "undefined" && typeof activePlayerData.boost !== "undefined" ? activePlayerData.boost : '0'}</strong>
                         </div>
-                        <div style={{ fontSize: 25, marginTop: -5 }}>
+                        <div style={{ fontSize: 25, marginTop: '-1vw' }}>
                             <strong>{typeof activePlayerData !== "undefined" && typeof activePlayerData.speed !== "undefined" ? activePlayerData.speed : '0'}</strong> mph
                         </div>
                     </CircularProgressbarWithChildren>
