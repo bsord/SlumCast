@@ -4,7 +4,7 @@ import {
     MDBBadge
 } from 'mdbreact';
 import { useSelector } from 'react-redux'
-
+import Color from 'color';
 
 
 
@@ -22,17 +22,38 @@ export let Team0lights = () => {
     const fiveSeven = series.type == 5 || series.type == 7
     const seven = series.type == 7
 
-    const light = `rgba(255,255,255,0.5)`
+    let teamData
+    let teamColors = {
+        team0: { primary: 'rgba(0,212,255,1)', secondary: 'rgba(9,9,121,1)' },
+        team1: { primary: 'Orange', secondary: 'DarkOrange' },
+    }
+    if (gaming != undefined) {
+        teamData = gaming.game.teams
+        
+        const scoreColor = (e, b) => {
+          let color = Color('#' + b)
+    
+          return e === 'E5E5E5' ? color.darken(0.5).hex() : e
+        }
+    
+        teamColors = {
+          team0: { primary: '#' + teamData[0].color_primary, secondary: scoreColor(teamData[0].color_secondary, teamData[0].color_primary) },
+          team1: { primary: '#' + teamData[1].color_primary, secondary: scoreColor(teamData[1].color_secondary, teamData[1].color_primary) },
+        }
+    
+      }
+
+    const light = teamColors.team0.primary
     const dark = `rgba(000,000,000,0.5)`
 
     //console.log(series)
-    let team0g1 = series.games.game1.team0 == 0 ? <MDBBadge style={{backgroundColor: dark}}>1</MDBBadge> : <MDBBadge className="text-dark" style={{backgroundColor: light}}>1</MDBBadge>
-    let team0g2 = series.games.game2.team0 == 0 ? <MDBBadge style={{backgroundColor: dark}}>2</MDBBadge> : <MDBBadge className="text-dark" style={{backgroundColor: light}}>2</MDBBadge>
-    let team0g3 = series.games.game3.team0 == 0 ? <MDBBadge style={{backgroundColor: dark}}>3</MDBBadge> : <MDBBadge className="text-dark" style={{backgroundColor: light}}>3</MDBBadge>
-    let team0g4 = series.games.game4.team0 == 0 ? <MDBBadge style={{backgroundColor: dark}} className={fiveSeven ? '' : 'd-none'}>4</MDBBadge> : <MDBBadge style={{backgroundColor: light}} className={fiveSeven ? 'text-dark' : 'd-none'}>4</MDBBadge>
-    let team0g5 = series.games.game5.team0 == 0 ? <MDBBadge style={{backgroundColor: dark}} className={fiveSeven ? '' : 'd-none'}>5</MDBBadge> : <MDBBadge style={{backgroundColor: light}} className={fiveSeven ? 'text-dark' : 'd-none'}>5</MDBBadge>
-    let team0g6 = series.games.game6.team0 == 0 ? <MDBBadge style={{backgroundColor: dark}} className={seven ? '' : 'd-none'}>6</MDBBadge> : <MDBBadge style={{backgroundColor: light}} className={seven ? 'text-dark' : 'd-none'}>6</MDBBadge>
-    let team0g7 = series.games.game7.team0 == 0 ? <MDBBadge style={{backgroundColor: dark}} className={seven ? '' : 'd-none'}>7</MDBBadge> : <MDBBadge style={{backgroundColor: light}} className={seven ? 'text-dark' : 'd-none'}>7</MDBBadge>
+    let team0g1 = series.games.game1.team0 == 0 ? <MDBBadge className='clipped-left-light' style={{backgroundColor: dark, width:'50%', padding:0}}>1</MDBBadge> : <MDBBadge className="text-dark clipped-left-light" style={{backgroundColor: light, width:'50%', padding:0}}>1</MDBBadge>
+    let team0g2 = series.games.game2.team0 == 0 ? <MDBBadge className='clipped-left-light' style={{backgroundColor: dark, width:'50%', padding:0}}>2</MDBBadge> : <MDBBadge className="text-dark clipped-left-light" style={{backgroundColor: light, width:'50%', padding:0}}>2</MDBBadge>
+    let team0g3 = series.games.game3.team0 == 0 ? <MDBBadge className='clipped-left-light' style={{backgroundColor: dark, width:'50%', padding:0}}>3</MDBBadge> : <MDBBadge className="text-dark clipped-left-light" style={{backgroundColor: light, width:'50%', padding:0}}>3</MDBBadge>
+    let team0g4 = series.games.game4.team0 == 0 ? <MDBBadge className='clipped-left-light' style={{backgroundColor: dark, width:'50%', padding:0}} className={fiveSeven ? 'clipped-left-light' : 'd-none clipped-left-light'}>4</MDBBadge> : <MDBBadge style={{backgroundColor: light, width:'50%', padding:0}} className={fiveSeven ? 'text-dark clipped-left-light' : 'd-none clipped-left-light'}>4</MDBBadge>
+    let team0g5 = series.games.game5.team0 == 0 ? <MDBBadge className='clipped-left-light' style={{backgroundColor: dark, width:'50%', padding:0}} className={fiveSeven ? 'clipped-left-light' : 'd-none clipped-left-light'}>5</MDBBadge> : <MDBBadge style={{backgroundColor: light, width:'50%', padding:0}} className={fiveSeven ? 'text-dark clipped-left-light' : 'd-none clipped-left-light'}>5</MDBBadge>
+    let team0g6 = series.games.game6.team0 == 0 ? <MDBBadge className='clipped-left-light' style={{backgroundColor: dark, width:'50%', padding:0}} className={seven ? 'clipped-left-light' : 'd-none clipped-left-light'}>6</MDBBadge> : <MDBBadge style={{backgroundColor: light, width:'50%', padding:0}} className={seven ? 'text-dark clipped-left-light' : 'd-none clipped-left-light'}>6</MDBBadge>
+    let team0g7 = series.games.game7.team0 == 0 ? <MDBBadge className='clipped-left-light' style={{backgroundColor: dark, width:'50%', padding:0}} className={seven ? 'clipped-left-light' : 'd-none clipped-left-light'}>7</MDBBadge> : <MDBBadge style={{backgroundColor: light, width:'50%', padding:0}} className={seven ? 'text-dark clipped-left-light' : 'd-none clipped-left-light'}>7</MDBBadge>
 
     return (
         <MDBCol size='12' className={lightsActive0}>
@@ -60,16 +81,37 @@ export let Team1lights = () => {
     const fiveSeven = series.type == 5 || series.type == 7
     const seven = series.type == 7
 
-    const light = `rgba(255,255,255,0.5)`
+    let teamData
+    let teamColors = {
+        team0: { primary: 'rgba(0,212,255,1)', secondary: 'rgba(9,9,121,1)' },
+        team1: { primary: 'Orange', secondary: 'DarkOrange' },
+    }
+    if (gaming != undefined) {
+        teamData = gaming.game.teams
+        
+        const scoreColor = (e, b) => {
+          let color = Color('#' + b)
+    
+          return e === 'E5E5E5' ? color.darken(0.5).hex() : e
+        }
+    
+        teamColors = {
+          team0: { primary: '#' + teamData[0].color_primary, secondary: scoreColor(teamData[0].color_secondary, teamData[0].color_primary) },
+          team1: { primary: '#' + teamData[1].color_primary, secondary: scoreColor(teamData[1].color_secondary, teamData[1].color_primary) },
+        }
+    
+      }
+
+    const light = teamColors.team1.primary
     const dark = `rgba(000,000,000,0.5)`
 
-    let team1g1 = series.games.game1.team1 == 0 ? <MDBBadge style={{backgroundColor: dark}}>1</MDBBadge> : <MDBBadge className="text-dark" style={{backgroundColor: light}}>1</MDBBadge>
-    let team1g2 = series.games.game2.team1 == 0 ? <MDBBadge style={{backgroundColor: dark}}>2</MDBBadge> : <MDBBadge className="text-dark" style={{backgroundColor: light}}>2</MDBBadge>
-    let team1g3 = series.games.game3.team1 == 0 ? <MDBBadge style={{backgroundColor: dark}}>3</MDBBadge> : <MDBBadge className="text-dark" style={{backgroundColor: light}}>3</MDBBadge>
-    let team1g4 = series.games.game4.team1 == 0 ? <MDBBadge style={{backgroundColor: dark}} className={fiveSeven ? '' : 'd-none'}>4</MDBBadge> : <MDBBadge style={{backgroundColor: light}} className={fiveSeven ? 'text-dark' : 'd-none'}>4</MDBBadge>
-    let team1g5 = series.games.game5.team1 == 0 ? <MDBBadge style={{backgroundColor: dark}} className={fiveSeven ? '' : 'd-none'}>5</MDBBadge> : <MDBBadge style={{backgroundColor: light}} className={fiveSeven ? 'text-dark' : 'd-none'}>5</MDBBadge>
-    let team1g6 = series.games.game6.team1 == 0 ? <MDBBadge style={{backgroundColor: dark}} className={seven ? '' : 'd-none'}>6</MDBBadge> : <MDBBadge style={{backgroundColor: light}} className={seven ? 'text-dark' : 'd-none'}>6</MDBBadge>
-    let team1g7 = series.games.game7.team1 == 0 ? <MDBBadge style={{backgroundColor: dark}} className={seven ? '' : 'd-none'}>7</MDBBadge> : <MDBBadge style={{backgroundColor: light}} className={seven ? 'text-dark' : 'd-none'}>7</MDBBadge>
+    let team1g1 = series.games.game1.team1 == 0 ? <MDBBadge className='clipped-right-light' style={{backgroundColor: dark, width:'50%', padding:0}}>1</MDBBadge> : <MDBBadge className="text-dark clipped-right-light" style={{backgroundColor: light, width:'50%', padding:0}}>1</MDBBadge>
+    let team1g2 = series.games.game2.team1 == 0 ? <MDBBadge className='clipped-right-light' style={{backgroundColor: dark, width:'50%', padding:0}}>2</MDBBadge> : <MDBBadge className="text-dark clipped-right-light" style={{backgroundColor: light, width:'50%', padding:0}}>2</MDBBadge>
+    let team1g3 = series.games.game3.team1 == 0 ? <MDBBadge className='clipped-right-light' style={{backgroundColor: dark, width:'50%', padding:0}}>3</MDBBadge> : <MDBBadge className="text-dark clipped-right-light" style={{backgroundColor: light, width:'50%', padding:0}}>3</MDBBadge>
+    let team1g4 = series.games.game4.team1 == 0 ? <MDBBadge className='clipped-right-light' style={{backgroundColor: dark, width:'50%', padding:0}} className={fiveSeven ? 'clipped-right-light' : 'd-none clipped-right-light'}>4</MDBBadge> : <MDBBadge style={{backgroundColor: light, width:'50%', padding:0}} className={fiveSeven ? 'text-dark clipped-right-light' : 'd-none clipped-right-light'}>4</MDBBadge>
+    let team1g5 = series.games.game5.team1 == 0 ? <MDBBadge className='clipped-right-light' style={{backgroundColor: dark, width:'50%', padding:0}} className={fiveSeven ? 'clipped-right-light' : 'd-none clipped-right-light'}>5</MDBBadge> : <MDBBadge style={{backgroundColor: light, width:'50%', padding:0}} className={fiveSeven ? 'text-dark clipped-right-light' : 'd-none clipped-right-light'}>5</MDBBadge>
+    let team1g6 = series.games.game6.team1 == 0 ? <MDBBadge className='clipped-right-light' style={{backgroundColor: dark, width:'50%', padding:0}} className={seven ? 'clipped-right-light' : 'd-none clipped-right-light'}>6</MDBBadge> : <MDBBadge style={{backgroundColor: light, width:'50%', padding:0}} className={seven ? 'text-dark clipped-right-light' : 'd-none clipped-right-light'}>6</MDBBadge>
+    let team1g7 = series.games.game7.team1 == 0 ? <MDBBadge className='clipped-right-light' style={{backgroundColor: dark, width:'50%', padding:0}} className={seven ? 'clipped-right-light' : 'd-none clipped-right-light'}>7</MDBBadge> : <MDBBadge style={{backgroundColor: light, width:'50%', padding:0}} className={seven ? 'text-dark clipped-right-light' : 'd-none clipped-right-light'}>7</MDBBadge>
     return (
         <MDBCol size='12' className={lightsActive1}>
             <div className="d-flex justify-content-evenly" style={{/* boxShadow: `0px -10px 15px -6px #000000` */}}>

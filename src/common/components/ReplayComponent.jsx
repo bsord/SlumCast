@@ -15,7 +15,7 @@ export const ReplayComponent = () => {
 
     let wCheck = gaming == undefined ? false : gaming.game.hasWinner
 
-    let replayDisplay = gCheck == true ? 'w-100 fixed-bottom text-light p-3 d-flex align-items-center' : 'd-none'
+    let replayDisplay = gCheck == true ? 'w-100 fixed-bottom text-light p-2 d-flex align-items-center' : 'd-none'
 
     let winnerHide = wCheck == true ? 'd-none' : ''
 
@@ -26,7 +26,7 @@ export const ReplayComponent = () => {
     let assistDisplay = assister == '' ? 'd-none' : 'mx-4'
 
     console.log(winnerHide)
-    const style = { height: `150px`, backgroundColor: `rgba(0, 0, 0, 0.58)` }
+    const style = { height: `100px`, background: `linear-gradient(0deg, rgba(75,75,75,.85) -50%, rgba(0,0,0,.85) 120%)` }
     let scorer = _.isUndefined(goal) ? '' : goal.scorer.name
 
     return (

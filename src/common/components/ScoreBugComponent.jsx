@@ -47,7 +47,8 @@ export const ScoreBugComponent = () => {
     team0: { primary: 'rgba(0,212,255,1)', secondary: 'rgba(9,9,121,1)' },
     team1: { primary: 'Orange', secondary: 'DarkOrange' },
   }
-
+  let team0NameSize = 2
+  let team1NameSize = 2
 
 
   if (gaming != undefined) {
@@ -78,119 +79,117 @@ export const ScoreBugComponent = () => {
     }
 
 
-    //console.log(teamColors)
 
+    team0NameSize = teamData[0].name.length > 13? 1.6 : 2
+    team1NameSize = teamData[1].name.length > 13? 1.6 : 2
+    console.log(teamData[1].name.length)
   }
-  let team0grad = `linear-gradient(-270deg, rgba(0,0,0,1) 0%,` + teamColors.team0.secondary + ` 35%, ` + teamColors.team0.primary + ` 100%)`
-  let team1grad = `linear-gradient(270deg, rgba(0,0,0,1) 0%,` + teamColors.team1.secondary + ` 35%, ` + teamColors.team1.primary + ` 100%)`
+  let team0grad = `linear-gradient(-175deg, rgba(0,0,0,1) -25%,` +  teamColors.team0.primary + ` 100%)`
+  let team0gradinv = `linear-gradient(-25deg, rgba(255,255,255,1) -10%,` +  teamColors.team0.primary + ` 30%)`
+  let team1grad = `linear-gradient(175deg, rgba(0,0,0,1) 0%,` + teamColors.team1.primary + ` 100%)`
+  let team1gradinv = `linear-gradient(25deg, rgba(255,255,255,1) -10%,` + teamColors.team1.primary + ` 30%)`
+  let timebuggrad = `linear-gradient(0deg, rgba(75,75,75,1) -50%, rgba(0,0,0,1) 120%)`
+  let scoregrad = `linear-gradient(0deg, rgba(75,75,75,1) 0%, rgba(0,0,0,1) 200%)`
 
   let lightsActive0 = series.lights ? 'mb-1' : 'd-none'
   let lightsActive1 = series.lights ? 'mt-1' : 'd-none'
-
+ 
 
   return (
     <MDBRow top>
-      <MDBCol size="3">
-
+      <MDBCol size="4">
       </MDBCol>
 
       {/* Score Bug Component */}
-      <MDBCol size="6" className="text-light" style={{ padding: `1px`, backgroundColor: `rgba(0, 0, 0, 0.58)` }}>
+      <MDBCol size="4" className="text-light clipped" >
         <MDBContainer className="p-0">
-          <MDBRow>
+          <MDBRow style={{ padding: `0px`, background: timebuggrad}}>
 
             {/* team 0 bug */}
-            <MDBCol size="4" className="" >
-              <MDBContainer className="m-0 p-0 h-100" style={{ background: team0grad }}>
-
+            <MDBCol className="p-0 team-name" >
+              <MDBContainer className="m-0 p-0 h-100 clipped-left" style={{background: team0gradinv}}>
                 <MDBRow className="m-0" style={{}}>
-
-                  <MDBCol size="3" className="d-none p-0 ">
-                    {/* <img src="https://rustdeez.com/img/logos/cropped/POR.png" alt="" className="img-fluid" style={{ width: `100%`, opacity: `88%` }} /> */}
-                  </MDBCol>
-                  <MDBCol size="9" className="p-1 text-center text-light" style={{ teambox, fontSize: `2.0vw`, fontWeight: `800`, lineHeight: `2vw` }}>
-
-                    <div className="h-100 d-flex align-items-center justify-content-center">
-                      <div className="pt-1">
+                  <MDBCol size="10" className="mt-2 pt-0 pb-0 text-center text-light clipped-left" style={{ teambox, fontSize: team0NameSize +`vw`, fontWeight: `800`, lineHeight: team0NameSize +`vw`, background: team0grad  }}>
+                    <div className="h-100 d-flex align-items-center justify-content-center ">
+                      <div className="">
                         <strong>
-                          {teamData != undefined ? teamData[0].name : 'Blue'}
+                          {teamData != undefined ? teamData[0].name : 'BLUE'}
                         </strong>
                       </div>
 
                     </div>
                   </MDBCol>
-                  <MDBCol size="3" className="p-0 pt-1 text-center d-flex align-items-center justify-content-center">
-                    <span style={{ fontSize: `3.2em`, fontWeight: `800` }}>
+                  <MDBCol size='2' className="pt-2 text-center d-flex align-items-center justify-content-center" style={{paddingRight:"1.75em"}}>
+                    <span style={{ fontSize: `4em`, lineHeight: 1, fontWeight: `800` }}>
                       <strong>{teamData != undefined ? teamData[0].score : '0'}
                       </strong>
                     </span>
                   </MDBCol>
-
-                  <div className="mb-1">
-                    <Team0lights />
-                  </div>
-
                 </MDBRow>
-
               </MDBContainer>
             </MDBCol>
 
-
-
             {/* series score +  time bug */}
-            <MDBCol size="4" className=" text-light text-center">
-
-              <div className={series.text && series.active ? "p-0 m-0 text-center text-light" : "d-none"} style={{ fontSize: `1.2vw`, fontWeight: `500` }}>
-                <SeriesScore />
-              </div>
-
+            <MDBCol size="2" className=" text-light text-center">
               <div className="" style={{ marginTop: `-10px`, marginBottom: `-20px` }} >
-                <span id="overtime" className={isOT ? "" : "d-none"} style={{ fontSize: `2.6vw`, fontWeight: `800` }}>+ </span>
-                <span id="time" style={{ fontSize: `2.6vw`, fontWeight: `800` }}>{time}</span>
+                <span id="overtime" className={isOT ? "" : "d-none"} style={{ fontSize: `2.4vw`, fontWeight: `800` }}>+ </span>
+                <span id="time" style={{ fontSize: `2.4vw`, fontWeight: `800` }}>{time}</span>
               </div>
-
             </MDBCol>
 
             {/* team 1 bug */}
-            <MDBCol size="4" className="">
-              <MDBContainer className="m-0 p-0 h-100" style={{ background: team1grad }}>
-
+            <MDBCol className="p-0">
+              <MDBContainer className="m-0 p-0 h-100 clipped-right" style={{ background: team1gradinv }}>
                 <MDBRow className="m-0">
 
-                  <MDBCol size="3" className="d-none p-0">
-                    {/* <img src="https://rustdeez.com/img/logos/cropped/ATL.png" alt="" className=" img-fluid" style={{ width: `100%`, opacity: `88%` }} /> */}
+                  <MDBCol size="2" className="pt-2 text-center d-flex align-items-center justify-content-center" style={{paddingLeft:"1.75em"}}>
+                    <span style={{ fontSize: `4em`, lineHeight: 1, fontWeight: `800` }}><strong>{teamData != undefined ? teamData[1].score : '0'}</strong></span>
                   </MDBCol>
-                  <MDBCol size="3" className="p-0 pt-1 text-center d-flex align-items-center justify-content-center" >
-                    <span style={{ fontSize: `3.2em`, fontWeight: `800` }}><strong>{teamData != undefined ? teamData[1].score : '0'}</strong></span>
-                  </MDBCol>
-                  <MDBCol size="9" className="p-1 text-center text-light" style={{ teambox, fontSize: `2.0vw`, fontWeight: `800`, lineHeight: `2vw` }}>
+                  <MDBCol size="10" className="mt-2 pt-0 pb-0 p-1 text-center text-light clipped-right" style={{ teambox, fontSize: team1NameSize +`vw`, fontWeight: `800`, lineHeight: team0NameSize +`vw`, background: team1grad  }}>
 
                     <div className="h-100 d-flex align-items-center justify-content-center">
                       <div className="">
                         <strong>
-                          {teamData != undefined ? teamData[1].name : 'Orange'}
+                          {teamData != undefined ? teamData[1].name : 'ORANGE'}
                         </strong>
                       </div>
                     </div>
 
                   </MDBCol>
-
-
-                  <div className="mb-1">
-                    <Team1lights />
-                  </div>
-
                 </MDBRow>
+              </MDBContainer>
+            </MDBCol>
+          </MDBRow>
 
+
+          <MDBRow >
+            <MDBCol size="1">
+            </MDBCol>
+            {/* team 0 bug */}
+            <MDBCol className="clipped-left-score" style={{ padding: `0px`, background: scoregrad, paddingRight:'1em'}}>
+              <MDBContainer className="m-0 p-1">
+                <Team0lights />
               </MDBContainer>
             </MDBCol>
 
+            {/* series score +  time bug */}
+            
+            <MDBCol size="3" className=" text-light text-center p-0 m-0" style={{ teambox, fontSize: `.75vw`, fontWeight: `800`, lineHeight: `.82vw`, background: scoregrad }}>
+              <div className={series.text && series.active ? "" : "d-none"}>
+                <SeriesScore />
+              </div>
+            </MDBCol>
 
-
-
-
-
+            {/* team 1 bug */}
+            <MDBCol className="clipped-right-score"  style={{ padding: `0px`, background: scoregrad, paddingLeft:'1em'}}>
+              <MDBContainer className="m-0 p-1" >
+                <Team1lights />
+              </MDBContainer>
+            </MDBCol>
+            <MDBCol size="1">
+            </MDBCol>
           </MDBRow>
+
         </MDBContainer>
       </MDBCol>
     </MDBRow>

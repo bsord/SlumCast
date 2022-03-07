@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-family: BigNoodleTilting, Roboto, Helvetica, Arial, sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -8,4 +8,49 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@font-face {
+  font-family: "BigNoodleTilting";
+  src: local("BigNoodleTilting"),
+   url("./big_noodle_titling_oblique.ttf") format("truetype");
+  font-weight: bold;
+  }
+
+.clipped {
+  clip-path: polygon(0 0, 100% 0%, 98% 100%, 2% 100%);
+}
+
+.clipped-left {
+  clip-path: polygon(0 0, 96% 0, 100% 100%, 0 100%);
+}
+
+.clipped-right {
+  clip-path: polygon(4% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.clipped-right-score {
+  clip-path: polygon(0 0, 100% 0%, 98% 100%, 0% 100%);
+}
+
+.clipped-left-score {
+  clip-path: polygon(0 0, 100% 0%, 100% 100%, 2% 100%);
+}
+
+.clipped-left-light {
+  clip-path: polygon(0 0, 95% 0, 100% 100%, 5% 100%);
+}
+.clipped-right-light {
+  clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+}
+
+.badge {
+  margin-left: .2em;
+  margin-right: .2em;
+}
+
+.team-name {
+  overflow: hidden !important;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
