@@ -109,7 +109,7 @@ export const ScoreBugComponent = () => {
             <MDBCol className="p-0 team-name" >
               <MDBContainer className="m-0 p-0 h-100 clipped-left" style={{background: team0gradinv}}>
                 <MDBRow className="m-0" style={{}}>
-                  <MDBCol size="10" className="mt-2 pt-0 pb-0 text-center text-light clipped-left" style={{ teambox, fontSize: team0NameSize +`vw`, fontWeight: `800`, lineHeight: team0NameSize +`vw`, background: team0grad  }}>
+                  <MDBCol size="10" className="mt-1 pt-0 pb-0 text-center text-light clipped-left" style={{ teambox, fontSize: team0NameSize +`vw`, fontWeight: `800`, lineHeight: team0NameSize +`vw`, background: team0grad  }}>
                     <div className="h-100 d-flex align-items-center justify-content-center ">
                       <div className="">
                         <strong style={{letterSpacing:'.05em'}}>
@@ -145,7 +145,7 @@ export const ScoreBugComponent = () => {
                   <MDBCol size="2" className="pt-2 text-center d-flex align-items-center justify-content-center" style={{paddingLeft:"1.75em"}}>
                     <span style={{ fontSize: `4em`, lineHeight: 1, fontWeight: `800` }}><strong>{teamData != undefined ? teamData[1].score : '0'}</strong></span>
                   </MDBCol>
-                  <MDBCol size="10" className="mt-2 pt-0 pb-0 p-1 text-center text-light clipped-right" style={{ teambox, fontSize: team1NameSize +`vw`, fontWeight: `800`, lineHeight: team0NameSize +`vw`, background: team1grad  }}>
+                  <MDBCol size="10" className="mt-1 pt-0 pb-0 p-1 text-center text-light clipped-right" style={{ teambox, fontSize: team1NameSize +`vw`, fontWeight: `800`, lineHeight: team0NameSize +`vw`, background: team1grad  }}>
 
                     <div className="h-100 d-flex align-items-center justify-content-center">
                       <div className="">
