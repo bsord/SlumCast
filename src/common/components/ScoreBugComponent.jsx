@@ -119,8 +119,8 @@ export const ScoreBugComponent = () => {
 
                     </div>
                   </MDBCol>
-                  <MDBCol size='2' className="pt-2 text-center d-flex align-items-center justify-content-center" style={{paddingRight:"1.75em"}}>
-                    <span style={{ fontSize: `4em`, lineHeight: 1, fontWeight: `800` }}>
+                  <MDBCol size='2' className=" text-center d-flex align-items-center justify-content-center" style={{paddingRight:"1vw", paddingTop: '.2vw'}}>
+                    <span style={{ fontSize: `2.5vw`, lineHeight: 1, fontWeight: `800` }}>
                       <strong>{teamData != undefined ? teamData[0].score : '0'}
                       </strong>
                     </span>
@@ -131,7 +131,7 @@ export const ScoreBugComponent = () => {
 
             {/* series score +  time bug */}
             <MDBCol size="2" className=" text-light text-center">
-              <div className="" style={{ marginTop: `-10px`, marginBottom: `-20px` }} >
+              <div className="" style={{ marginTop: `-.5vw`, marginBottom: `-2vw` }} >
                 <span id="overtime" className={isOT ? "" : "d-none"} style={{ fontSize: `2.4vw`, fontWeight: `800` }}>+ </span>
                 <span id="time" style={{ fontSize: `2.4vw`, fontWeight: `800` }}>{time}</span>
               </div>
@@ -142,8 +142,8 @@ export const ScoreBugComponent = () => {
               <MDBContainer className="m-0 p-0 h-100 clipped-right" style={{ background: team1gradinv }}>
                 <MDBRow className="m-0">
 
-                  <MDBCol size="2" className="pt-2 text-center d-flex align-items-center justify-content-center" style={{paddingLeft:"1.75em"}}>
-                    <span style={{ fontSize: `4em`, lineHeight: 1, fontWeight: `800` }}><strong>{teamData != undefined ? teamData[1].score : '0'}</strong></span>
+                  <MDBCol size="2" className="text-center d-flex align-items-center justify-content-center" style={{paddingLeft:"1vw", paddingTop: '.2vw'}}>
+                    <span style={{ fontSize: `2.5vw`, lineHeight: 1, fontWeight: `800` }}><strong>{teamData != undefined ? teamData[1].score : '0'}</strong></span>
                   </MDBCol>
                   <MDBCol size="10" className="mt-1 pt-0 pb-0 p-1 text-center text-light clipped-right" style={{ teambox, fontSize: team1NameSize +`vw`, fontWeight: `800`, lineHeight: team0NameSize +`vw`, background: team1grad  }}>
 
