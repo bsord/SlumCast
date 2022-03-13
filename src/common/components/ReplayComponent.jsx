@@ -23,8 +23,8 @@ export const ReplayComponent = () => {
 
     let assister = _.isUndefined(goal) ? '' : goal.assister.name
 
-    let goalColor = _.isUndefined(goal) ? '' : gaming.game.teams[goal.scorer.teamnum].color_primary
-    let goalColorGrad = `linear-gradient(0deg, #`+goalColor+` -50%, rgba(0,0,0,.80) 75%)`
+    //let goalColor = _.isUndefined(goal) ? 'FFF' : gaming.game.teams[goal.scorer.teamnum].color_primary
+    //let goalColorGrad = `linear-gradient(0deg, #`+goalColor+` -50%, rgba(0,0,0,.80) 75%)`
 
     let assistDisplay = assister == '' ? 'd-none' : 'mx-4'
     
@@ -35,7 +35,7 @@ export const ReplayComponent = () => {
     return (
         <>
             <div className={winnerHide}>
-                <div className={replayDisplay} style={{background:  goalColorGrad}}>
+                <div className={replayDisplay} style={{background:  '#fff'}}>
                     <MDBTypography tag='div' className='text-danger flex-grow-1' style={{fontSize:'3vw', paddingLeft: '.75vw'}}>
                         <MDBIcon fas icon="circle" /> Replay
                     </MDBTypography>

@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import _ from 'lodash'
 
 import RadialSeparators from "./RadialSeparators";
-import { isExternalModuleNameRelative } from "typescript";
 
 const percentage = 100;
 const boostStyle = {
