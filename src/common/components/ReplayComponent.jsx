@@ -23,20 +23,23 @@ export const ReplayComponent = () => {
 
     let assister = _.isUndefined(goal) ? '' : goal.assister.name
 
-    let assistDisplay = assister == '' ? 'd-none' : 'mx-4'
+    let goalColor = _.isUndefined(goal) ? '' : gaming.game.teams[goal.scorer.teamnum].color_primary
+    let goalColorGrad = `linear-gradient(0deg, #`+goalColor+` -50%, rgba(0,0,0,.80) 75%)`
 
+    let assistDisplay = assister == '' ? 'd-none' : 'mx-4'
+    
     console.log(winnerHide)
-    const style = { background: `linear-gradient(0deg, rgba(75,75,75,.85) -50%, rgba(0,0,0,.85) 120%)` }
+    
     let scorer = _.isUndefined(goal) ? '' : goal.scorer.name
 
     return (
         <>
             <div className={winnerHide}>
-                <div className={replayDisplay} style={style}>
-                    <MDBTypography tag='div' className='text-danger flex-grow-1' style={{fontSize:'1.5vw', paddingLeft: '.75vw'}}>
+                <div className={replayDisplay} style={{background:  goalColorGrad}}>
+                    <MDBTypography tag='div' className='text-danger flex-grow-1' style={{fontSize:'3vw', paddingLeft: '.75vw'}}>
                         <MDBIcon fas icon="circle" /> Replay
                     </MDBTypography>
-                    <div style={{ fontSize: `1.5vw` }}>
+                    <div style={{ fontSize: `3vw` }}>
                         <span className="mx-4">
                             <MDBIcon fas icon="futbol" /> {scorer}
                         </span>

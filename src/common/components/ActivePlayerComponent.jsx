@@ -5,15 +5,19 @@ import { useSelector } from "react-redux";
 import _ from 'lodash'
 
 import RadialSeparators from "./RadialSeparators";
+import { isExternalModuleNameRelative } from "typescript";
 
 const percentage = 100;
 const boostStyle = {
 
-    width: '10vw',
-    height: '10vw',
+    width: '12vw',
+    height: '12vw',
     background: `linear-gradient(0deg, rgba(75,75,75,1) -50%, rgba(0,0,0,1) 120%)`,
     borderRadius: `300px 300px 300px 300px`,
     marginBottom: `1vw`,
+    position: 'fixed',
+    right: '2vw',
+    bottom: 0
 }
 const flip = {
     transform: `rotate(0.5turn)`,
@@ -56,38 +60,38 @@ export const ActivePlayerComponent = () => {
     return (
         <>
     <MDBRow className="fixed-bottom text-light">
-        <MDBCol size="6" className={typeof activePlayerData !== "undefined" && typeof activePlayerData.name !== "undefined" && isReplay == false ? "" : "d-none"} >
-            <MDBRow  style={{background: '#333', borderBottom: '5px solid ' + activeColor, fontSize:'1vw', lineHeight: '2vw' }} className="clipped-left">
+        <MDBCol size="7" className={typeof activePlayerData !== "undefined" && typeof activePlayerData.name !== "undefined" && isReplay == false ? "" : "d-none"} >
+            <MDBRow  style={{background: '#333', borderBottom: '5px solid ' + activeColor, fontSize:'1vw', lineHeight: '3.5vw' }} className="clipped-left">
                 <MDBCol size="3" className='p-0'>
-                    <MDBTypography  className="px-4 p-0 mb-0 overflow-hidden" style={{fontSize:'1.4vw', lineHeight: '2vw', background: statsNamegrad}} >
+                    <MDBTypography  className="px-4 p-0 mb-0 overflow-hidden" style={{fontSize:'2.5vw', lineHeight: '3.5vw', background: statsNamegrad}} >
                         {typeof activePlayerData !== "undefined" && typeof activePlayerData.name !== "undefined" ? activePlayerData.name : 'None'}
                     </MDBTypography>
                 </MDBCol>
-                <MDBCol size="9" style={{background: statsgrad}} className='px-4' >
+                <MDBCol size="9" style={{background: statsgrad, paddingLeft: '1vw', paddingRight: 0}} >
                     <MDBRow>
                         <MDBCol size="2">
                             <MDBRow>
-                                <MDBCol  style={{fontSize:'2vw', lineHeight: '2vw', textAlign: 'right', paddingRight:'.1vw'}}>
+                                <MDBCol style={{fontSize:'3vw', lineHeight: '3.5vw', textAlign: 'right', paddingRight:'.2vw'}}>
                                     <strong>
                                         {typeof activePlayerData !== "undefined" && typeof activePlayerData.score !== "undefined" ? activePlayerData.score : '0'}
                                     </strong>
                                 </MDBCol>
-                                <MDBCol style={{textAlign: 'left', paddingLeft:'.1vw'}}>
-                                    <div style={{}} >
+                                <MDBCol className='p-0' style={{textAlign: 'left', paddingLeft:'.2vw', lineHeight: '2vw'}}>
+                                    <div style={{letterSpacing: '.05vw'}} >
                                         Score
                                     </div>
                                 </MDBCol>
                             </MDBRow>
                         </MDBCol>
-                        <MDBCol size="2">
+                        <MDBCol size="2" >
                             <MDBRow>
-                                <MDBCol  style={{fontSize:'2vw', lineHeight: '2vw', textAlign: 'right', paddingRight:'.1vw'}}>
+                                <MDBCol  style={{fontSize:'3vw', lineHeight: '3.5vw', textAlign: 'right', paddingRight:'.2vw'}}>
                                     <strong>
                                         {typeof activePlayerData !== "undefined" && typeof activePlayerData.shots !== "undefined" ? activePlayerData.shots : '0'}
                                     </strong>
                                 </MDBCol>
-                                <MDBCol style={{textAlign: 'left', paddingLeft:'.1vw'}}>
-                                    <div style={{}} >
+                                <MDBCol className='p-0' style={{textAlign: 'left', paddingLeft:'.2vw', lineHeight: '2vw'}}>
+                                    <div style={{letterSpacing: '.05vw'}} >
                                         Goals
                                     </div>
                                 </MDBCol>
@@ -95,13 +99,13 @@ export const ActivePlayerComponent = () => {
                         </MDBCol>
                         <MDBCol size="2">
                             <MDBRow>
-                                <MDBCol  style={{fontSize:'2vw', lineHeight: '2vw', textAlign: 'right', paddingRight:'.1vw'}}>
+                                <MDBCol  style={{fontSize:'3vw', lineHeight: '3.5vw', textAlign: 'right', paddingRight:'.2vw'}}>
                                     <strong>
                                         {typeof activePlayerData !== "undefined" && typeof activePlayerData.shots !== "undefined" ? activePlayerData.shots : '0'}
                                     </strong>
                                 </MDBCol>
-                                <MDBCol style={{textAlign: 'left', paddingLeft:'.1vw'}}>
-                                    <div style={{}} >
+                                <MDBCol className='p-0' style={{textAlign: 'left', paddingLeft:'.2vw', lineHeight: '2vw'}}>
+                                    <div style={{letterSpacing: '.05vw'}} >
                                         Shots
                                     </div>
                                 </MDBCol>
@@ -109,13 +113,13 @@ export const ActivePlayerComponent = () => {
                         </MDBCol>
                         <MDBCol size="2">
                             <MDBRow>
-                                <MDBCol  style={{fontSize:'2vw', lineHeight: '2vw', textAlign: 'right', paddingRight:'.1vw'}}>
+                                <MDBCol  style={{fontSize:'3vw', lineHeight: '3.5vw', textAlign: 'right', paddingRight:'.2vw'}}>
                                     <strong>
                                     {typeof activePlayerData !== "undefined" && typeof activePlayerData.assists !== "undefined" ? activePlayerData.assists : '0'}
                                     </strong>
                                 </MDBCol>
-                                <MDBCol style={{textAlign: 'left', paddingLeft:'.1vw'}}>
-                                    <div style={{}} >
+                                <MDBCol className='p-0' style={{textAlign: 'left', paddingLeft:'.2vw', lineHeight: '2vw'}}>
+                                    <div style={{letterSpacing: '.05vw'}} >
                                         Assists
                                     </div>
                                 </MDBCol>
@@ -123,13 +127,13 @@ export const ActivePlayerComponent = () => {
                         </MDBCol>
                         <MDBCol size="2">
                             <MDBRow>
-                                <MDBCol  style={{fontSize:'2vw', lineHeight: '2vw', textAlign: 'right', paddingRight:'.1vw'}}>
+                                <MDBCol  style={{fontSize:'3vw', lineHeight: '3.5vw', textAlign: 'right', paddingRight:'.2vw'}}>
                                     <strong>
                                         {typeof activePlayerData !== "undefined" && typeof activePlayerData.saves !== "undefined" ? activePlayerData.saves : '0'}
                                     </strong>
                                 </MDBCol>
-                                <MDBCol style={{textAlign: 'left', paddingLeft:'.1vw'}}>
-                                    <div style={{}} >
+                                <MDBCol className='p-0' style={{textAlign: 'left', paddingLeft:'.2vw', lineHeight: '2vw'}}>
+                                    <div style={{letterSpacing: '.05vw'}} >
                                         Saves
                                     </div>
                                 </MDBCol>
@@ -141,16 +145,16 @@ export const ActivePlayerComponent = () => {
         </MDBCol>
     </MDBRow>
     <MDBRow className="fixed-bottom text-light">
-        <MDBCol size="10"></MDBCol>
         
-        <MDBCol size="2">
+        
+        <MDBCol size="12" >
             <MDBRow
                 dark
                 bottom
                 className={typeof activePlayerData !== "undefined" && typeof activePlayerData.name !== "undefined" && isReplay == false ? "border border-dark text-light" : "d-none"}
                 style={boostStyle}>
                 
-                <MDBCol size="12" style={newStyle}>
+                <MDBCol size="12" style={newStyle} >
                     
                     <CircularProgressbarWithChildren
                         value={typeof activePlayerData !== "undefined" && typeof activePlayerData.boost !== "undefined" ? activePlayerData.boost : 0}
@@ -187,11 +191,11 @@ export const ActivePlayerComponent = () => {
                             />
                         </div>
                         <div
-                            style={{ fontSize: 80, fontWeight: 300, marginTop: '-1vw' }}
+                            style={{ fontSize: '5vw', fontWeight: 300, marginTop: '-1vw' }}
                         >
                             <strong>{typeof activePlayerData !== "undefined" && typeof activePlayerData.boost !== "undefined" ? activePlayerData.boost : '0'}</strong>
                         </div>
-                        <div style={{ fontSize: 25, marginTop: '-1vw' }}>
+                        <div style={{ fontSize: '1.5vw', marginTop: '-2.5vw' }}>
                             <strong>{typeof activePlayerData !== "undefined" && typeof activePlayerData.speed !== "undefined" ? activePlayerData.speed : '0'}</strong> mph
                         </div>
                     </CircularProgressbarWithChildren>
