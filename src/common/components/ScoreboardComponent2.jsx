@@ -57,7 +57,7 @@ export const ScoreboardComponent = () => {
                     ))}
                 </MDBCol>
             </MDBRow>
-            <MDBRow  style={{position: 'absolute', bottom: '10vw', right: '0', marginRight: '0', width: '15vw', fontSize:'1.5vw', lineHeight:'1'}} className='text-light'>
+            <MDBRow  style={{position: 'absolute', bottom: '10vw', right: '0', marginRight: '0', width: '15vw', fontSize:'1.5vw', lineHeight:'1'}} className={ hasWinner == false ? "p-0 text-light" : "d-none"}>
                 <MDBCol className="p-0" style={{}} >
                     {team1.map(player=>(
                         <div style={{marginBottom: '.5vw'}}>

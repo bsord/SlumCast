@@ -17,7 +17,7 @@ export const ReplayComponent = () => {
 
     let replayDisplay = gCheck == true ? '' : 'd-none'
 
-    let winnerHide = wCheck == true ? 'd-none' : ''
+    let winnerHide = wCheck == true ? 'd-none' : 'justify-content-center fixed-bottom text-light'
 
     let goalspeed = _.isUndefined(goal) ? '0' : _.round(goal.goalspeed * 0.62)
 
@@ -35,7 +35,7 @@ export const ReplayComponent = () => {
 
     return (
         <>
-        <MDBRow className="justify-content-center fixed-bottom text-light" style={{marginBottom: '5vw'}} >
+        <MDBRow className={winnerHide} style={{marginBottom: '5vw'}} >
             <MDBCol size="4" className={replayDisplay} style={{ background: '#000000DD',borderRadius: '.25vw .25vw .25vw .25vw'}}>
                 <MDBRow >
                     <MDBCol size='2' className='p-0' style={{}}>
