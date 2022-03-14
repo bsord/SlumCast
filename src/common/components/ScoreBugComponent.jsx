@@ -82,7 +82,7 @@ export const ScoreBugComponent = () => {
 
     team0NameSize = teamData[0].name.length > 11? 2.8 : 3.5
     team1NameSize = teamData[1].name.length > 11? 2.8 : 3.5
-    console.log(teamData[1].name.length)
+    //console.log(teamData[1].name.length)
   }
   let team0grad = `linear-gradient(-175deg, rgba(0,0,0,1) -25%,` +  teamColors.team0.primary + ` 125%)`
   let team0gradinv = `linear-gradient(-25deg, rgba(255,255,255,1) -30%,` +  teamColors.team0.primary + ` 20%)`

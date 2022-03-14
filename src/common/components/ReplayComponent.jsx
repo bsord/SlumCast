@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { MDBIcon, MDBTypography } from 'mdbreact';
+import { MDBIcon, MDBTypography, MDBRow, MDBCol } from 'mdbreact';
 import _ from 'lodash'
 
 export const ReplayComponent = () => {
@@ -15,7 +15,7 @@ export const ReplayComponent = () => {
 
     let wCheck = gaming == undefined ? false : gaming.game.hasWinner
 
-    let replayDisplay = gCheck == true ? 'w-100 fixed-bottom text-light p-2 d-flex align-items-center' : 'd-none'
+    let replayDisplay = gCheck == true ? '' : 'd-none'
 
     let winnerHide = wCheck == true ? 'd-none' : ''
 
@@ -24,34 +24,51 @@ export const ReplayComponent = () => {
     let assister = _.isUndefined(goal) ? '' : goal.assister.name
 
     let goalColor = _.isUndefined(goal) ? 'FFF' : gaming.game.teams[goal.scorer.teamnum].color_primary
+    console.log(goalColor)
     let goalColorGrad = `linear-gradient(0deg, #`+goalColor+` -50%, rgba(0,0,0,.80) 75%)`
 
-    let assistDisplay = assister == '' ? 'd-none' : 'mx-4'
+    let assistDisplay = assister == '' ? 'd-none' : ''
     
-    console.log(winnerHide)
+    //console.log(winnerHide)
     
     let scorer = _.isUndefined(goal) ? '' : goal.scorer.name
 
     return (
         <>
-            <div className={winnerHide}>
-                <div className={replayDisplay} style={{background:  goalColorGrad}}>
-                    <MDBTypography tag='div' className='text-danger flex-grow-1' style={{fontSize:'3vw', paddingLeft: '.75vw'}}>
-                        <MDBIcon fas icon="circle" /> Replay
-                    </MDBTypography>
-                    <div style={{ fontSize: `3vw` }}>
-                        <span className="mx-4">
-                            <MDBIcon fas icon="futbol" /> {scorer}
-                        </span>
-                        <span className={assistDisplay}>
-                            <MDBIcon fas icon="hands-helping" /> {assister}
-                        </span>
-                        <span className="mx-4">
-                            <MDBIcon fas icon="wind" /> {goalspeed} KPH
-                        </span>
-                    </div>
-                </div>
-        </div>
+        <MDBRow className="justify-content-center fixed-bottom text-light" style={{marginBottom: '5vw'}} >
+            <MDBCol size="4" className={replayDisplay} style={{ background: '#000000DD',borderRadius: '.25vw .25vw .25vw .25vw'}}>
+                <MDBRow >
+                    <MDBCol size='2' className='p-0' style={{}}>
+                        <MDBTypography tag='div' className='text-danger flex-grow-1' style={{fontSize:'1.5vw', lineHeight: '2vw', textAlign: 'center'}}>
+                            <MDBIcon fas icon="circle" style={{fontSize:'1.25vw', lineHeight: '1'}}/> Replay
+                        </MDBTypography>
+                    </MDBCol>
+
+                    <MDBCol style={{fontSize:'1.5vw', lineHeight: '2vw', textAlign: 'center'}}>
+                        <div style={{ marginRight: '.25vw', background: `#` + goalColor}}>
+                        {scorer}
+                        </div>   
+                    </MDBCol>
+
+                    <MDBCol className={assistDisplay} style={{fontSize:'1.5vw', lineHeight: '2vw', textAlign: 'center'}}>
+                        <div style={{display:'inline-block', marginRight: '.25vw'}}>
+                            <MDBIcon fas icon="hands-helping" style={{fontSize:'1.25vw', lineHeight: '1'}}/>
+                        </div>
+                        <div style={{letterSpacing: '.05vw', textAlign: 'left', fontSize:'1.5vw', lineHeight: '2vw', display:'inline-block',}} >
+                            {assister}
+                        </div>
+                    </MDBCol>
+
+                    <MDBCol size="2" style={{fontSize:'1.5vw', lineHeight: '2vw', textAlign: 'right'}}>
+                        {goalspeed} MPH
+                    </MDBCol>
+                
+                    
+                    
+
+                </MDBRow>
+            </MDBCol>
+        </MDBRow>
         </>
     )
 }
