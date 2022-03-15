@@ -26,11 +26,15 @@ export const ScoreboardComponent = () => {
     let team0 = []
     let team1 = []
     let hasWinner = false
+    let hasTarget = false
+    let isReplay = false
     if (gaming != undefined) {
 
 
         teamData = gaming.game.teams
         hasWinner = gaming.game.hasWinner
+        hasTarget = gaming.game.hasTarget
+        isReplay = gaming.game.isReplay
         let playerList = _.map(gaming.players)
         team0 = playerList.filter(player => player.team === 0)
         team1 = playerList.filter(player => player.team === 1)
@@ -43,7 +47,7 @@ export const ScoreboardComponent = () => {
 
     return (
         <>
-            <MDBRow style={{position: 'absolute', bottom: '10vw', marginLeft: '0', width: '15vw', fontSize:'1.5vw', lineHeight:'1'}} className={ hasWinner == false ? "p-0 text-light" : "d-none"} >
+            <MDBRow style={{position: 'absolute', bottom: '10vw', marginLeft: '0', width: '15vw', fontSize:'1.5vw', lineHeight:'1'}} className={ !hasWinner && !isReplay && hasTarget? "p-0 text-light" : "d-none"} >
             <MDBCol className="p-0">
                     {team0.map(player=>(
                         <div style={{marginBottom: '.5vw'}}>
@@ -57,7 +61,7 @@ export const ScoreboardComponent = () => {
                     ))}
                 </MDBCol>
             </MDBRow>
-            <MDBRow  style={{position: 'absolute', bottom: '10vw', right: '0', marginRight: '0', width: '15vw', fontSize:'1.5vw', lineHeight:'1'}} className={ hasWinner == false ? "p-0 text-light" : "d-none"}>
+            <MDBRow  style={{position: 'absolute', bottom: '10vw', right: '0', marginRight: '0', width: '15vw', fontSize:'1.5vw', lineHeight:'1'}} className={ !hasWinner && !isReplay && hasTarget? "p-0 text-light" : "d-none"}>
                 <MDBCol className="p-0" style={{}} >
                     {team1.map(player=>(
                         <div style={{marginBottom: '.5vw'}}>

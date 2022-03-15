@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import _ from 'lodash'
 import { ProgressBar } from "./ProgressBar";
 
-import RadialSeparators from "./RadialSeparators";
 
 const percentage = 100;
 const boostStyle = {

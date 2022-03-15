@@ -24,7 +24,7 @@ export const ReplayComponent = () => {
     let assister = _.isUndefined(goal) ? '' : goal.assister.name
 
     let goalColor = _.isUndefined(goal) ? 'FFF' : gaming.game.teams[goal.scorer.teamnum].color_primary
-    console.log(goalColor)
+
     let goalColorGrad = `linear-gradient(0deg, #`+goalColor+` -50%, rgba(0,0,0,.80) 75%)`
 
     let assistDisplay = assister == '' ? 'd-none' : ''

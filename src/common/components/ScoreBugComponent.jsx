@@ -36,7 +36,6 @@ export const ScoreBugComponent = () => {
 
   const selectGameState = state => state.wsReducer['game:update_state']
   const gaming = useSelector(state => selectGameState(state))
-
   const series = useSelector(state => state.gamedata.series)
 
 

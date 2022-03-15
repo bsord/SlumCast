@@ -50,12 +50,12 @@ export const EventsComponent = () => {
   if (gaming != undefined) {
     hasWinner = gaming.game.hasWinner
   }
-
+  
   if(testEvent && !hasWinner){
 
     let eventId = testEvent.event_name + testEvent.main_target.id
     testEvent['id'] = eventId
-    if(testEvent.type !== "win" && testEvent.type !== "mvp") {
+    if(testEvent.type !== "WIN" && testEvent.type !== "MVP") {
       if (!gameEvents.some(e => e.id === eventId)) {
         // dont' add the same event over and over.
         if(eventId !== lastEvent){
