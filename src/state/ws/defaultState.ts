@@ -9,6 +9,8 @@ export interface MessageState {
     connected: boolean;
     messages: MessageState[];
     url?: string;
+    data: {}
+    gamestate: {}
   }
   
   const defaultState: State = {
@@ -16,7 +18,7 @@ export interface MessageState {
     messages: [],
     data: {},
     gamestate: {},
-    url: null,
+    url: undefined,
   };
   
 export default defaultState;

@@ -2,9 +2,27 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { MDBIcon, MDBTypography, MDBRow, MDBCol } from 'mdbreact';
 import _ from 'lodash'
+import { Transition } from 'react-transition-group';
+import { useRef } from 'react';
+
+const duration = 500;
+
+const defaultStyle = {
+  transition: `opacity ${duration}ms ease-in-out, margin ${duration}ms ease-in-out`,
+  marginBottom: '0',
+  opacity: 0,
+  
+}
+
+const transitionStyles = {
+  entering: { opacity: 1, marginBottom: '5vw' },
+  entered:  { opacity: 1, marginBottom: '5vw' },
+  exiting:  { opacity: 0, marginBottom: '0' },
+  exited:  { opacity: 0, marginBottom: '0' },
+};
 
 export const ReplayComponent = () => {
-
+    const nodeRef = useRef(null);
 
     const selectGameState = state => state.wsReducer['game:update_state']
     const selectGoalState = state => state.wsReducer['game:goal_scored']
@@ -34,41 +52,52 @@ export const ReplayComponent = () => {
     let scorer = _.isUndefined(goal) ? '' : goal.scorer.name
 
     return (
-        <>
-        <MDBRow className={winnerHide} style={{marginBottom: '5vw'}} >
-            <MDBCol size="4" className={replayDisplay} style={{ background: '#000000DD',borderRadius: '.25vw .25vw .25vw .25vw'}}>
-                <MDBRow >
-                    <MDBCol size='2' className='p-0' style={{}}>
-                        <MDBTypography tag='div' className='text-danger flex-grow-1' style={{fontSize:'1.5vw', lineHeight: '2vw', textAlign: 'center'}}>
-                            <MDBIcon fas icon="circle" style={{fontSize:'1.25vw', lineHeight: '1'}}/> Replay
-                        </MDBTypography>
-                    </MDBCol>
+        <Transition nodeRef={nodeRef} in={gCheck} timeout={duration}>
+            {state => (
 
-                    <MDBCol style={{fontSize:'1.5vw', lineHeight: '2vw', textAlign: 'center'}}>
-                        <div style={{ marginRight: '.25vw', background: `#` + goalColor}}>
-                        {scorer}
-                        </div>   
-                    </MDBCol>
+                <MDBRow 
+                    className={winnerHide}
+                    ref={nodeRef}
+                    style={{
+                        ...defaultStyle,
+                        ...transitionStyles[state],
+                        
+                    }}
+                >
 
-                    <MDBCol className={assistDisplay} style={{fontSize:'1.5vw', lineHeight: '2vw', textAlign: 'center'}}>
-                        <div style={{display:'inline-block', marginRight: '.25vw'}}>
-                            <MDBIcon fas icon="hands-helping" style={{fontSize:'1.25vw', lineHeight: '1'}}/>
-                        </div>
-                        <div style={{letterSpacing: '.05vw', textAlign: 'left', fontSize:'1.5vw', lineHeight: '2vw', display:'inline-block',}} >
-                            {assister}
-                        </div>
-                    </MDBCol>
 
-                    <MDBCol size="2" style={{fontSize:'1.5vw', lineHeight: '2vw', textAlign: 'right'}}>
-                        {goalspeed} MPH
+                    <MDBCol size="4" className={replayDisplay} style={{ background: '#000000DD',borderRadius: '.25vw .25vw .25vw .25vw'}}>
+                        <MDBRow >
+                            <MDBCol size='2' className='p-0' style={{}}>
+                                <MDBTypography tag='div' className='text-danger flex-grow-1' style={{fontSize:'1.5vw', lineHeight: '2vw', textAlign: 'center'}}>
+                                    <MDBIcon fas icon="circle" style={{fontSize:'1.25vw', lineHeight: '1'}}/> Replay
+                                </MDBTypography>
+                            </MDBCol>
+
+                            <MDBCol style={{fontSize:'1.5vw', lineHeight: '2vw', textAlign: 'center'}}>
+                                <div style={{ marginRight: '.25vw', background: `#` + goalColor}}>
+                                {scorer}
+                                </div>   
+                            </MDBCol>
+
+                            <MDBCol className={assistDisplay} style={{fontSize:'1.5vw', lineHeight: '2vw', textAlign: 'center'}}>
+                                <div style={{display:'inline-block', marginRight: '.25vw'}}>
+                                    <MDBIcon fas icon="hands-helping" style={{fontSize:'1.25vw', lineHeight: '1'}}/>
+                                </div>
+                                <div style={{letterSpacing: '.05vw', textAlign: 'left', fontSize:'1.5vw', lineHeight: '2vw', display:'inline-block',}} >
+                                    {assister}
+                                </div>
+                            </MDBCol>
+
+                            <MDBCol size="2" style={{fontSize:'1.5vw', lineHeight: '2vw', textAlign: 'right'}}>
+                                {goalspeed} MPH
+                            </MDBCol>
+                        </MDBRow>
                     </MDBCol>
                 
-                    
-                    
-
                 </MDBRow>
-            </MDBCol>
-        </MDBRow>
-        </>
+
+            )}
+        </Transition>
     )
 }

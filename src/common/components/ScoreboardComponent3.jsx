@@ -79,7 +79,7 @@ export const ScoreboardComponent3 = () => {
                     Match is about to begin
                 </MDBCol>
             </MDBRow>
-            <MDBRow style={{position: 'absolute', bottom: '25vw', marginLeft: '0', width: '15vw', fontSize:'1.5vw', lineHeight:'1'}} className={ isKickOff  ? "p-0 text-light" : "d-none"} >
+            <MDBRow style={{position: 'absolute', bottom: '25vw', marginLeft: '0', width: '15vw', fontSize:'1.5vw', lineHeight:'1'}} className={ isKickOff  ? "d-none" : "d-none"} >
                 <MDBCol className="p-0" style={{background: 'green'}}>
                     Kickoff
                 </MDBCol>

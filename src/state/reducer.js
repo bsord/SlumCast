@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
 import { persistReducer } from 'redux-persist'
-import { autoMergeLevel1 } from 'redux-persist/lib/stateReconciler/autoMergeLevel1'
+import autoMergeLevel1 from 'redux-persist/lib/stateReconciler/autoMergeLevel1'
 
 import chasingReducer from './ballchasing/ballchasingSlice'
 import gamedataReducer from './control/controlSlice'

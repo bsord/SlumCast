@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useRef } from "react";
 import {
   MDBRow,
   MDBContainer,
@@ -33,7 +33,7 @@ let dot = {
 }
 
 export const ScoreBugComponent = () => {
-
+  const clockRef = useRef(null)
   const selectGameState = state => state.wsReducer['game:update_state']
   const gaming = useSelector(state => selectGameState(state))
   const series = useSelector(state => state.gamedata.series)
@@ -92,7 +92,7 @@ export const ScoreBugComponent = () => {
 
   let lightsActive0 = series.lights ? 'mb-1' : 'd-none'
   let lightsActive1 = series.lights ? 'mt-1' : 'd-none'
- 
+
 
   return (
     <MDBRow top className="h-100 d-flex align-items-center justify-content-center">
@@ -131,7 +131,7 @@ export const ScoreBugComponent = () => {
             <MDBCol size='2' className=" text-light text-center p-0">
               <div className="" style={{ paddingTop: '.2vw' }} >
                 <span id="overtime" className={isOT ? "" : "d-none"} style={{ fontSize: `4vw`, fontWeight: `800`, lineHeight: '1' }}>+</span>
-                <span id="time" style={{ fontSize: `4vw`, fontWeight: `800`, lineHeight: '1' }}>{time}</span>
+                <span id="time" style={{ fontSize: `4vw`, fontWeight: `800`, lineHeight: '1'}}>{time}</span>
               </div>
             </MDBCol>
 

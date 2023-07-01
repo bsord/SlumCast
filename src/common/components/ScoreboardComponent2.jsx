@@ -4,11 +4,43 @@ import _ from 'lodash'
 import { useSelector, } from 'react-redux'
 import { ProgressBar } from "./ProgressBar";
 //'linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,85,0,1) 15%, rgba(255,166,0,1) 50%, rgba(254,255,0,1) 85%, rgba(255,255,255,1) 100%)'
+import { Transition } from 'react-transition-group';
+import { useRef } from 'react';
 
+const duration = 500;
+
+const defaultStyleLeft = {
+  transition: `opacity ${duration}ms ease-in-out, margin ${duration}ms ease-in-out`,
+  marginLeft: '-5vw',
+  opacity: 0,
+  position: 'absolute', bottom: '10vw', marginLeft: '0', width: '15vw', fontSize:'1.5vw', lineHeight:'1'
+}
+
+const transitionStylesLeft = {
+  entering: { opacity: 1, marginLeft: '0' },
+  entered:  { opacity: 1, marginLeft: '0' },
+  exiting:  { opacity: 0, marginLeft: '-5vw' },
+  exited:  { opacity: 0, marginLeft: '-5vw' },
+};
+
+const defaultStyleRight = {
+    transition: `opacity ${duration}ms ease-in-out, margin ${duration}ms ease-in-out`,
+    marginRight: '-5vw',
+    opacity: 0,
+    position: 'absolute', bottom: '10vw', right: '0', marginRight: '0', width: '15vw', fontSize:'1.5vw', lineHeight:'1'
+  }
+  
+  const transitionStylesRight = {
+    entering: { opacity: 1, marginRight: '0' },
+    entered:  { opacity: 1, marginRight: '0' },
+    exiting:  { opacity: 0, marginRight: '-5vw' },
+    exited:  { opacity: 0, marginRight: '-5vw' },
+  };
 
 
 export const ScoreboardComponent = () => {
-
+    const leftRef = useRef(null);
+    const rightRef = useRef(null);
     const series = useSelector(state => state.gamedata.series)
     const selectGameState = state => state.wsReducer['game:update_state']
 
@@ -47,34 +79,58 @@ export const ScoreboardComponent = () => {
 
     return (
         <>
-            <MDBRow style={{position: 'absolute', bottom: '10vw', marginLeft: '0', width: '15vw', fontSize:'1.5vw', lineHeight:'1'}} className={ !hasWinner && !isReplay && hasTarget? "p-0 text-light" : "d-none"} >
-            <MDBCol className="p-0">
-                    {team0.map(player=>(
-                        <div style={{marginBottom: '.5vw'}}>
-                            <div style={{padding:'.25vw',  background: teamColors.team0.primary, borderRadius: ' 0 .25vw 0 0'}}>
-                                {player.name}
-                            </div>
-                            <div style={{  overflow: 'hidden',borderRadius: '0 0 .25vw 0'}}>
-                                <ProgressBar valuePercentage={player.boost} />
-                            </div>
-                        </div>
-                    ))}
-                </MDBCol>
-            </MDBRow>
-            <MDBRow  style={{position: 'absolute', bottom: '10vw', right: '0', marginRight: '0', width: '15vw', fontSize:'1.5vw', lineHeight:'1'}} className={ !hasWinner && !isReplay && hasTarget? "p-0 text-light" : "d-none"}>
-                <MDBCol className="p-0" style={{}} >
-                    {team1.map(player=>(
-                        <div style={{marginBottom: '.5vw'}}>
-                            <div style={{padding:'.25vw',  background: teamColors.team1.primary, borderRadius: '.25vw 0 0 0'}}>
-                                {player.name}
-                            </div>
-                            <div style={{  overflow: 'hidden', borderRadius: '0 0 0 .25vw'}}>
-                                <ProgressBar valuePercentage={player.boost}  />
-                            </div>
-                        </div>
-                    ))}
-                </MDBCol>
-            </MDBRow>
+            <Transition nodeRef={leftRef} in={!hasWinner && !isReplay && hasTarget} timeout={duration}>
+                {state => (
+                    <MDBRow ref={leftRef}
+                        style={{
+                            ...defaultStyleLeft,
+                            ...transitionStylesLeft[state],
+                            
+                        }}
+                        
+                    >
+                        <MDBCol className="p-0">
+                            {team0.map(player=>(
+                                <div style={{marginBottom: '.5vw'}} className={"p-0 text-light"}>
+                                    <div style={{padding:'.25vw',  background: teamColors.team0.primary, borderRadius: ' 0 .25vw 0 0'}}>
+                                        {player.name}
+                                    </div>
+                                    <div style={{  overflow: 'hidden',borderRadius: '0 0 .25vw 0'}}>
+                                        <ProgressBar valuePercentage={player.boost} />
+                                    </div>
+                                </div>
+                            ))}
+                        </MDBCol>
+                    </MDBRow>
+
+                )}
+            </Transition>
+
+            <Transition nodeRef={leftRef} in={!hasWinner && !isReplay && hasTarget} timeout={duration}>
+                {state => (
+                    <MDBRow ref={leftRef}
+                        style={{
+                            ...defaultStyleRight,
+                            ...transitionStylesRight[state],
+                            
+                        }}
+                        
+                    >
+                        <MDBCol className="p-0"  >
+                            {team1.map(player=>(
+                                <div style={{marginBottom: '.5vw'}}  className={"p-0 text-light"}>
+                                    <div style={{padding:'.25vw',  background: teamColors.team1.primary, borderRadius: '.25vw 0 0 0'}}>
+                                        {player.name}
+                                    </div>
+                                    <div style={{  overflow: 'hidden', borderRadius: '0 0 0 .25vw'}}>
+                                        <ProgressBar valuePercentage={player.boost}  />
+                                    </div>
+                                </div>
+                            ))}
+                        </MDBCol>
+                    </MDBRow>
+                )}
+            </Transition>
         </>
     )
 
