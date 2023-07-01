@@ -116,82 +116,66 @@ jobs:
     needs: [chart-test]
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout source code
         uses: "actions/checkout@v2"
         with:
           ref: ${{ github.ref }}
 
-      - name: Bump version and push tag
-        id: bump-tag
-        uses: anothrNick/github-tag-action@1.36.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_BRANCHES: "master,main"
-          DEFAULT_BUMP: "patch"
-          INITIAL_VERSION: "1.0.0"
+      - name: Get next version
+        id: get-next-version
+        uses: bsord/conventional-changelog-action@v3.7.0
+        with:
+          github-token: ${{ secrets.github_token }}
+          tag-prefix: ''
+          skip-version-file: true
+          dry-run: true
 
       - name: Update version in version files
-        id: update-version
+        if: ${{ steps.get-next-version.outputs.skipped == 'false' }}
         run: |
-          # Update package.json
-          npm version ${{ steps.bump-tag.outputs.new_tag }} --no-git-tag-version
-          # Update Helm chart version
-          sed -r -i "s/(version:[^*]|appVersion:[^*])([[:alnum:].]*.*)/\1${{ steps.bump-tag.outputs.new_tag }}/g" ./chart/Chart.yaml
-
-      - name: Build Docker Tags
-        id: docker-tags
-        run: |
-          CUR_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-          if [[ $CUR_BRANCH = "main" || $CUR_BRANCH = "master" ]]; then
-              TAGS="${{ github.repository }}:${{ steps.bump-tag.outputs.new_tag }},${{ github.repository }}:latest"
-          else
-              TAGS="${{ github.repository }}:${{ steps.bump-tag.outputs.new_tag }}"
-          fi
-          echo "::set-output name=tags::${TAGS}"
-          
-      - name: Cache Docker layers
-        uses: actions/cache@v2
+          sed -r -i 's/(\"version\":[^*]\")([[:alnum:].]*)/\1${{ steps.get-next-version.outputs.version }}/g' package.json
+          sed -r -i 's/(version:[^*]|appVersion:[^*])([[:alnum:].]*)/\1${{ steps.get-next-version.outputs.version }}/g' ./chart/Chart.yaml
+      - name: Commit changes
+        if: ${{ steps.get-next-version.outputs.skipped == 'false' }}
+        uses: EndBug/add-and-commit@v5
         with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ steps.vars.outputs.sha_short }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-
-          
-      - name: Set up Docker Buildx
-        id: buildx
-        uses: docker/setup-buildx-action@v1
+          message: "chore(version): Bump to: ${{ steps.get-next-version.outputs.version }}"
+          tag: "${{ steps.get-version.outputs.version }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Login to DockerHub
-        uses: docker/login-action@v1 
+      - name: Generate changelog and tag with new version
+        if: ${{ steps.get-next-version.outputs.skipped == 'false' }}
+        uses: bsord/conventional-changelog-action@v3.7.0
         with:
+          github-token: ${{ secrets.github_token }}
+          tag-prefix: ''
+          skip-version-file: true
+      
+      - name: Create Release
+        if: ${{ steps.get-next-version.outputs.skipped == 'false' }}
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
+        with:
+          tag_name: ${{ steps.get-next-version.outputs.version }}
+          release_name: ${{ steps.get-next-version.outputs.version }}
+          body: ${{ steps.get-next-version.outputs.clean_changelog }}
+
+      - name: Build and publish Docker image
+        if: ${{ steps.get-next-version.outputs.skipped == 'false' }}
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: ${{ github.repository }}
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
-        
-      - name: Build & Push Base Image
-        id: docker_build
-        uses: docker/build-push-action@v2
-        with:
-          builder: ${{ steps.buildx.outputs.name }}
-          context: ./
-          file: ./Dockerfile
-          push: true
-          tags: ${{ steps.docker-tags.outputs.tags }}
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache
+          tags: "latest,${{ steps.get-next-version.outputs.version }}"
 
-      - name: Package and publish Helm Chart
-        run: |
-          # Setup auth and workspace
-          CLONE_DIR=$(mktemp -d)
-          git config --global user.email "brandon.sorgdrager@gmail.com"
-          git config --global user.name "bsord"
-          git clone "https://${{ secrets.HELM_CHARTS_PAT }}@github.com/bsord/helm-charts.git" "$CLONE_DIR"
-          
-          # Package chart and push commit
-          helm package ./chart
-          cp *.tgz "$CLONE_DIR/packages/"
-          cd "$CLONE_DIR"
-          git add .
-          git commit --message "Update from https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
-          git push -u origin main
+      - name: Push Helm chart
+        if: ${{ steps.get-next-version.outputs.skipped == 'false' }}
+        uses: bsord/helm-push@v3
+        with:
+          access-token: ${{ secrets.CM_API_KEY }}
+          repository-url: ${{ secrets.CM_REPO_URL }} 
+          force: true
+          chart-folder: chart
