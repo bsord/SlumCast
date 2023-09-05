@@ -44,6 +44,9 @@ code {
   clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
 }
 
+.stroked {
+  -webkit-text-stroke: 1px rgb(209, 36, 36);
+}
 .badge {
   margin-left: .2em;
   margin-right: .2em;

@@ -4,6 +4,7 @@ import { CircularProgressbar, buildStyles, CircularProgressbarWithChildren } fro
 import { useSelector } from "react-redux";
 import _ from 'lodash'
 import { ProgressBar } from "./ProgressBar";
+import { BoostCircle } from "./BoostCircle";
 
 
 import { Transition } from 'react-transition-group';
@@ -14,13 +15,15 @@ const duration = 500;
 const defaultStyle = {
   transition: `opacity ${duration}ms ease-in-out, margin ${duration}ms ease-in-out`,
   marginBottom: '-2vw',
+  marginLeft: '1vw',
   opacity: 0,
-  
+  right: '0',
+  maxWidth: '55vw'
 }
 
 const transitionStyles = {
-  entering: { opacity: 1, marginBottom: '3vw' },
-  entered:  { opacity: 1, marginBottom: '3vw' },
+  entering: { opacity: 1, marginBottom: '1vw' },
+  entered:  { opacity: 1, marginBottom: '1vw' },
   exiting:  { opacity: 0, marginBottom: '-2vw' },
   exited:  { opacity: 0, marginBottom: '-2vw' },
 };
@@ -48,8 +51,6 @@ export const ActivePlayerComponent = () => {
         //console.log(isReplay)
     }
 
-    let statsNamegrad = `linear-gradient(-175deg, rgba(0,0,0,1) 0%,` +  activeColor + ` 200%)`
-    let statsgrad = `linear-gradient(0deg, rgba(75,75,75,1) -50%, rgba(0,0,0,1) 120%)`
     return (
         <>
 
@@ -58,70 +59,99 @@ export const ActivePlayerComponent = () => {
                 {state => (
 
                     <MDBRow 
-                        className="justify-content-center fixed-bottom text-light"
+                        className="fixed-bottom text-light"
                         ref={nodeRef}
                         style={{
                             ...defaultStyle,
                             ...transitionStyles[state],
                             
                         }}
+                        
                     >
-                        <MDBCol size="3" >
+                        <MDBCol className="justify-content-center text-light">
                             <MDBRow >
-                                <MDBCol size="4" className='p-0' style={{background: activeColor, borderRadius: '.25vw 0 0 0'}}>
-                                    <MDBTypography  className="p-0 mb-0 overflow-hidden" style={{fontSize:'1.5vw', lineHeight: '2vw', marginLeft: '.25vw'}} >
+                                <MDBCol size='4' className='p-0 m-auto' style={{background: '#000000DD', borderRadius: '.25vw 0 0 .25vw', borderRight: `1vw solid ${activeColor}`}}>
+                                    <MDBTypography  className="p-0 m-0  text-center center" style={{fontSize:'2vw'}} >
                                         {typeof activePlayerData !== "undefined" && typeof activePlayerData.name !== "undefined" ? activePlayerData.name : 'None'}
                                     </MDBTypography>
                                 </MDBCol>
 
-                                <MDBCol  style={{fontSize:'1.5vw', lineHeight: '2vw', textAlign: 'right', paddingRight:'.2vw', background: '#000000DD'}}>
+                                <MDBCol  style={{fontSize:'2vw', textAlign: 'right', paddingRight:'.2vw', background: '#000000DD'}} >
+                                    <div style={{float: 'left', marginRight: '.25vw'}}>
+                                        {typeof activePlayerData !== "undefined" && typeof activePlayerData.shots !== "undefined" ? activePlayerData.score : '0'}
+                                    </div>
+                                    <div style={{letterSpacing: '.05vw', textAlign: 'left', fontSize:'1vw', lineHeight: '2.75vw'}} >
+                                        Score
+                                    </div>
+                                </MDBCol>
+
+                                <MDBCol  style={{fontSize:'2vw', textAlign: 'right', paddingRight:'.2vw', background: '#000000DD'}} >
                                     <div style={{float: 'left', marginRight: '.25vw'}}>
                                         {typeof activePlayerData !== "undefined" && typeof activePlayerData.shots !== "undefined" ? activePlayerData.goals : '0'}
                                     </div>
-                                    <div style={{letterSpacing: '.05vw', textAlign: 'left', fontSize:'1vw', lineHeight: '2vw'}} >
+                                    <div style={{letterSpacing: '.05vw', textAlign: 'left', fontSize:'1vw', lineHeight: '2.75vw'}} >
                                         Goals
                                     </div>
                                 </MDBCol>
 
-                                <MDBCol  style={{fontSize:'1.5vw', lineHeight: '2vw', textAlign: 'right', paddingRight:'.2vw', background: '#000000DD'}}>
+                                <MDBCol style={{fontSize:'2vw', textAlign: 'right', paddingRight:'.2vw', background: '#000000DD'}}>
                                     <div style={{float: 'left', marginRight: '.25vw'}}>
                                         {typeof activePlayerData !== "undefined" && typeof activePlayerData.shots !== "undefined" ? activePlayerData.shots : '0'}
                                     </div>
 
-                                    <div style={{letterSpacing: '.05vw', textAlign: 'left', fontSize:'1vw', lineHeight: '2vw'}} >
+                                    <div style={{letterSpacing: '.05vw', textAlign: 'left', fontSize:'1vw', lineHeight: '2.75vw'}} >
                                         Shots
                                     </div>
                                 </MDBCol>
 
-                                <MDBCol  style={{fontSize:'1.5vw', lineHeight: '2vw', textAlign: 'right', paddingRight:'.2vw', background: '#000000DD'}}>
+                                <MDBCol  style={{fontSize:'2vw', textAlign: 'right', paddingRight:'.2vw', background: '#000000DD'}}>
                                     <div style={{float: 'left', marginRight: '.25vw'}}>
                                     {typeof activePlayerData !== "undefined" && typeof activePlayerData.assists !== "undefined" ? activePlayerData.assists : '0'}
                                     </div>
-                                    <div style={{letterSpacing: '.05vw', textAlign: 'left', fontSize:'1vw', lineHeight: '2vw'}} >
+                                    <div style={{letterSpacing: '.05vw', textAlign: 'left', fontSize:'1vw', lineHeight: '2.75vw'}} >
                                         Asst.
                                     </div>
                                 </MDBCol>
 
-                                <MDBCol  style={{fontSize:'1.5vw', lineHeight: '2vw', textAlign: 'right', paddingRight:'.2vw', background: '#000000DD', borderRadius: '0 .25vw 0 0'}}>
+                                <MDBCol  style={{fontSize:'2vw', textAlign: 'right', paddingRight:'.2vw', background: '#000000DD', borderRadius: '0 .25vw .25vw 0'}}>
                                     <div style={{float: 'left', marginRight: '.25vw'}}>
                                         {typeof activePlayerData !== "undefined" && typeof activePlayerData.saves !== "undefined" ? activePlayerData.saves : '0'}
                                     </div>
 
-                                    <div style={{letterSpacing: '.05vw', textAlign: 'left', fontSize:'1vw', lineHeight: '2vw'}} >
+                                    <div style={{letterSpacing: '.05vw', textAlign: 'left', fontSize:'1vw', lineHeight: '2.75vw'}} >
                                         Saves
                                     </div>
                                 </MDBCol>
                             </MDBRow>
-                            <MDBRow >
-                                <MDBCol className='p-0' style={{position: 'relative', borderRadius: '0 0 .25vw .25vw', overflow: 'hidden'}}>
-                                    <ProgressBar ref={progressRef} valuePercentage={typeof activePlayerData !== "undefined" && typeof activePlayerData.boost !== "undefined" ? activePlayerData.boost : 0}/>
-                                </MDBCol>
-                            </MDBRow>
                         </MDBCol>
+                        
+                                
                     </MDBRow>
     
             )}
         </Transition>
+
+
+        <MDBRow 
+            className="text-light"
+            style={{
+                transition: `opacity 3000ms ease-in-out, margin 3000ms ease-in-out`,
+                opacity: 1,
+                position: 'absolute',
+                bottom: '0',
+                right: '0',
+                marginRight: '3vw',
+                marginBottom: '3vw',
+                height: '10vw',
+                width: '10vw'
+                
+            }}
+        >
+            <MDBCol>
+                <BoostCircle color={activeColor} valuePercentage={typeof activePlayerData !== "undefined" && typeof activePlayerData.boost !== "undefined" ? activePlayerData.boost : 0}/>   
+            </MDBCol>
+        </MDBRow>
+        
     </>
     )
 }

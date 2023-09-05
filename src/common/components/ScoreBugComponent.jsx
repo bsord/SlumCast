@@ -79,37 +79,57 @@ export const ScoreBugComponent = () => {
 
 
 
-    team0NameSize = teamData[0].name.length > 11? 2.8 : 3.5
-    team1NameSize = teamData[1].name.length > 11? 2.8 : 3.5
+    team0NameSize = teamData[0].name.length > 13? 2.8 : 3.5
+    team1NameSize = teamData[1].name.length > 13? 2.8 : 3.5
     //console.log(teamData[1].name.length)
   }
-  let team0grad = `linear-gradient(-175deg, rgba(0,0,0,1) -25%,` +  teamColors.team0.primary + ` 125%)`
+  
+  //let team0grad = `linear-gradient(-175deg, rgba(0,0,0,1) -25%,` +  teamColors.team0.primary + ` 125%)`
+  //let team0gradinv = `linear-gradient(-25deg, rgba(255,255,255,1) -30%,` +  teamColors.team0.primary + ` 20%)`
+  //let team1grad = `linear-gradient(175deg, rgba(0,0,0,1) 0%,` + teamColors.team1.primary + ` 125%)`
+  //let team1gradinv = `linear-gradient(25deg, rgba(255,255,255,1) -30%,` + teamColors.team1.primary + ` 20%)`
+  //let timebuggrad = `linear-gradient(0deg, rgba(75,75,75,1) -50%, rgba(0,0,0,1) 120%)`
+  //let scoregrad = `linear-gradient(0deg, rgba(75,75,75,1) 0%, rgba(0,0,0,1) 200%)`
+  let team0grad = `#000000dd`
   let team0gradinv = `linear-gradient(-25deg, rgba(255,255,255,1) -30%,` +  teamColors.team0.primary + ` 20%)`
-  let team1grad = `linear-gradient(175deg, rgba(0,0,0,1) 0%,` + teamColors.team1.primary + ` 125%)`
+  let team1grad = `#000000dd`
   let team1gradinv = `linear-gradient(25deg, rgba(255,255,255,1) -30%,` + teamColors.team1.primary + ` 20%)`
-  let timebuggrad = `linear-gradient(0deg, rgba(75,75,75,1) -50%, rgba(0,0,0,1) 120%)`
+  let timebuggrad = `#000000FF`
   let scoregrad = `linear-gradient(0deg, rgba(75,75,75,1) 0%, rgba(0,0,0,1) 200%)`
 
   let lightsActive0 = series.lights ? 'mb-1' : 'd-none'
   let lightsActive1 = series.lights ? 'mt-1' : 'd-none'
 
+  const strokeGen = (textShadowSize, color) => {
+    const css = `
+      -${textShadowSize}px -${textShadowSize}px 0 ${color},
+      0        -${textShadowSize}px 0 ${color},
+      ${textShadowSize}px -${textShadowSize}px 0 ${color},
+      ${textShadowSize}px  0        0 ${color},
+      ${textShadowSize}px  ${textShadowSize}px 0 ${color},
+      0         ${textShadowSize}px 0 ${color},
+      -${textShadowSize}px  ${textShadowSize}px 0 ${color},
+      -${textShadowSize}px  0        0 ${color}
+    `
+    return css
+  }
 
   return (
     <MDBRow top className="h-100 d-flex align-items-center justify-content-center">
 
 
       {/* Score Bug Component */}
-      <MDBCol size="7" className="text-light clipped" >
+      <MDBCol size="7" className="text-light mt-2" >
         <MDBContainer className="p-0" >
-          <MDBRow style={{ padding: `0px`, background: timebuggrad}}>
+          <MDBRow >
 
             {/* team 0 bug */}
-            <MDBCol size='5' className="p-0 team-name" >
-              <MDBContainer className="m-0 p-0 h-100 clipped-left" style={{background: team0gradinv}}>
+            <MDBCol size='5' className="p-0 team-name" style={{ padding: `0px`, borderLeft: `1vw solid ${teamColors.team0.primary}`}}>
+              <MDBContainer className="m-0 p-0 h-80" >
                 <MDBRow className="m-0" style={{}}>
-                  <MDBCol size="10" className="mt-1 text-center text-light clipped-left" style={{ fontSize: team0NameSize +`vw`, fontWeight: `800`, lineHeight: `4vw`, background: team0grad, paddingTop: '.2vw'  }}>
-                    <div className="h-100 d-flex align-items-center justify-content-center ">
-                      <div className="">
+                  <MDBCol size="10" className=" text-center text-light justify-content-center " style={{ fontSize: team0NameSize +`vw`, fontWeight: `800`, lineHeight: `4vw`, background: team0grad }}>
+                    <div className="h-80 flex align-items-center justify-content-center ">
+                      <div  style={{letterSpacing: '3px'}}>
                         <strong >
                           {teamData != undefined ? teamData[0].name : 'BLUE'}
                         </strong>
@@ -117,7 +137,7 @@ export const ScoreBugComponent = () => {
 
                     </div>
                   </MDBCol>
-                  <MDBCol size='2' className=" text-center d-flex align-items-center justify-content-center" style={{paddingRight:"1.65vw", paddingTop: '.2vw'}}>
+                  <MDBCol size='2' className=" text-center d-flex align-items-center justify-content-center" style={{ paddingTop: '.2vw', background: team0gradinv}}>
                     <span style={{ fontSize: `4vw`, lineHeight: 1, fontWeight: `800` }}>
                       <strong>{teamData != undefined ? teamData[0].score : '0'}
                       </strong>
@@ -128,25 +148,25 @@ export const ScoreBugComponent = () => {
             </MDBCol>
 
             {/* series score +  time bug */}
-            <MDBCol size='2' className=" text-light text-center p-0">
-              <div className="" style={{ paddingTop: '.2vw' }} >
+            <MDBCol size='2' className=" text-light text-center p-0" style={{ background: timebuggrad }} >
+              <div className="" >
                 <span id="overtime" className={isOT ? "" : "d-none"} style={{ fontSize: `4vw`, fontWeight: `800`, lineHeight: '1' }}>+</span>
                 <span id="time" style={{ fontSize: `4vw`, fontWeight: `800`, lineHeight: '1'}}>{time}</span>
               </div>
             </MDBCol>
 
             {/* team 1 bug */}
-            <MDBCol size="5" className="p-0">
-              <MDBContainer className="m-0 p-0 h-100 clipped-right" style={{ background: team1gradinv }}>
+            <MDBCol size="5" className="p-0" style={{ padding: `0px`, borderRight: `1vw solid ${teamColors.team1.primary}`}}>
+              <MDBContainer className="m-0 p-0 h-100 " >
                 <MDBRow className="m-0">
 
-                  <MDBCol size="2" className="text-center d-flex align-items-center justify-content-center" style={{paddingLeft:"1.65vw", paddingTop: '.2vw'}}>
+                  <MDBCol size="2" className="text-center d-flex align-items-center justify-content-center" style={{paddingTop: '.2vw', background: team1gradinv}}>
                     <span style={{ fontSize: `4vw`, lineHeight: 1, fontWeight: `800` }}><strong>{teamData != undefined ? teamData[1].score : '0'}</strong></span>
                   </MDBCol>
-                  <MDBCol size="10" className="mt-1 text-center text-light clipped-right" style={{ fontSize: team1NameSize +`vw`, fontWeight: `800`, lineHeight: `4vw`, background: team1grad, paddingTop: '.2vw'  }}>
+                  <MDBCol size="10" className=" text-center text-light " style={{ fontSize: team1NameSize +`vw`, fontWeight: `800`, lineHeight: `4vw`, background: team1grad  }}>
 
                     <div className="h-100 d-flex align-items-center justify-content-center">
-                      <div className="">
+                      <div style={{letterSpacing: '3px'}}>
                         <strong >
                           {teamData != undefined ? teamData[1].name : 'ORANGE'}
                         </strong>
@@ -163,7 +183,7 @@ export const ScoreBugComponent = () => {
           <MDBRow className="justify-content-center" >
 
             {/* team 0 bug */}
-            <MDBCol size="3" className="clipped-left-score" style={{ padding: `0px`, background: scoregrad, paddingRight:'1.25vw'}}>
+            <MDBCol size="3" className="" style={{ padding: `0px`, background: scoregrad, paddingRight:'1.25vw'}}>
               <MDBContainer className="m-0 p-1">
                 <div className={series.active ? "" : "d-none"}>
                   <Team0lights />
